@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   title: 'Minh Le',
   description: 'Wikipedia',
-  base: '/docs',
+  base: '/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
