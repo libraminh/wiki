@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get Started →
-actionLink: /components/alerts/
+actionLink: /wiki/mac/
 features:
 - title: Simplicity First
   details: Minimal setup with markdown-centered project structure helps you focus on writing.

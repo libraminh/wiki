@@ -3,11 +3,33 @@ const path = require('path')
 module.exports = {
   title: 'Minh Le',
   description: 'Wikipedia',
-  base: '/',
+  base: '/docs',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Components', link: '/components/alerts/' }
+      { text: 'Wiki', link: '/wiki/' }
+    ],
+    sidebar: [
+      {
+        title: "Website",
+        children: [
+          '/wiki/website/git/',
+          '/wiki/website/css/',
+          '/wiki/website/javascript/',
+          '/wiki/website/ie11/',
+          '/wiki/website/vuepress/',
+          '/wiki/website/webpack/',
+          '/wiki/website/eslint/',
+          '/wiki/website/yeoman/',
+          '/wiki/website/node-js-generator/',
+        ]
+      },
+      {
+        title: "Mac",
+        children: [
+          '/wiki/mac/valet-laravel/',
+        ]
+      }
     ]
   },
   configureWebpack: {
