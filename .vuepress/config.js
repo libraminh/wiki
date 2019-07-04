@@ -17,6 +17,7 @@ module.exports = {
           '/wiki/website/css/',
           '/wiki/website/javascript/',
           '/wiki/website/ie11/',
+          '/wiki/website/vue/',
           '/wiki/website/vuepress/',
           '/wiki/website/webpack/',
           '/wiki/website/eslint/',
