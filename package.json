@@ -6,12 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vuepress build",
-    "dev": "vuepress dev",
-    "start": "vuepress build"
+    "dev": "vuepress dev"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:libraminh/wiki.github.io.git"
+    "url": "git@github.com:libraminh/wiki.git"
   },
   "keywords": [
     "Minhle",
@@ -19,7 +18,7 @@
   ],
   "author": "Minh Le",
   "license": "MIT",
-  "homepage": "https://wiki.github.io",
+  "homepage": "https://github.com/libraminh/wiki",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
