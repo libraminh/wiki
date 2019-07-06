@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+	<meta charset="utf-8">
+	<!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width">
+	<!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">
+	<!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<!--
+	PHPStorm/Webstorm template var:
+	 Email Background color (default "#222222"): #ffffff
+	 Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+	 Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+	 Font-size (default "15px"): 14px
+	 Line-height (default "20px"): 16px
+	 Section padding (default "20px"): 36px
+	 Half padding (default "10px" = Section padding / 2): 18px
+	 Section Background Color (default "#ffffff"): #ffffff
+	 Component Margin bottom (default "10px"): 35px
+
+	 Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+	-->
+
+	<title>Lexus - UX</title>
+	<!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+	<style>
+		* {
+			font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+	<!--<![endif]-->
+
+	<!-- Web Font / @font-face : END -->
+
+	<!--[if gte mso 9]>
+    <style type="text/css">
+        .border-right-5 {
+            border-right: 5px solid #ffffff !important;
+        }
+    </style>
+    <![endif]-->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+		/* What it does: Remove spaces around the email design added by some email clients. */
+
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+
+		*[x-apple-data-detectors],
+		/* iOS */
+
+		.unstyle-auto-detected-links *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+
+		img.g-img+div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		.no-u-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+		/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+
+		@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+			.email-container {
+				min-width: 320px !important;
+			}
+		}
+
+		/* iPhone 6, 6S, 7, 8, and X */
+
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+
+		/* iPhone 6+, 7+, and 8+ */
+
+		@media only screen and (min-device-width: 414px) {
+			.email-container {
+				min-width: 414px !important;
+			}
+		}
+	</style>
+	<!-- CSS Reset : END -->
+	<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+	<!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 35px !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+		/* What it does: Hover styles for buttons */
+
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+
+		.button-td-primary:hover,
+		.button-a-primary:hover {
+			background: #151515 !important;
+			border-color: #151515 !important;
+		}
+
+		/* Media Queries */
+
+		@media screen and (max-width: 600px) {
+
+			.email-container {
+				width: 100% !important;
+				margin: auto !important;
+			}
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				/*font-size: 17px !important;*/
+			}
+			.w-25{
+				width: 25% !important;
+			}
+			.w-75{
+				width: 75% !important;
+			}
+			.wid-12{
+				width: 12px !important;
+			}
+			.wid-25{
+				width: 25px !important;
+			}
+			.pd-10{
+				padding-left: 10px !important;
+				padding-right: 10px !important;
+			}
+			.text-td{
+				font-size: 14px !important;
+			}
+			.sm-pad-bt{
+				padding-bottom: 15px !important;
+			}
+		}
+	</style>
+	<!-- Progressive Enhancements : END -->
+
+
+	<!-- Custom responsive enhancements : BEGIN -->
+	<style>
+		/* iPhone 6->X Plus */
+
+		@media only screen and (max-device-width: 414px) {
+			.sm-img-full {
+				width: 100% !important;
+			}
+			.sm-left {
+				text-align: left !important;
+			}
+			.sm-pad-left {
+				padding-left: 23px !important;
+			}
+			.sm-pad-right {
+				padding-left: 23px !important;
+			}
+			.sm-pad {
+				padding-left: 23px !important;
+				padding-right: 23px !important;
+			}
+			.sm-center {
+				text-align: center !important;
+			}
+			.p-img {
+				height: auto !important;
+			}
+			.title {
+				font-size: 14.5px;
+				line-height: 18px;
+			}
+
+			/* Not re-usable */
+			.brand-story {
+				padding-top: 22px !important;
+				padding-bottom: 22px !important;
+			}
+			.finance-right-col {
+				padding-top: 42px !important;
+				padding-bottom: 42px !important;
+			}
+
+			.finance-right-col p {
+				line-height: 22px !important;
+			}
+
+			.copyrights {
+				padding-top: 13px !important;
+				padding-bottom: 13px !important;
+			}
+			.copyrights p {
+				font-size: 7px !important;
+				line-height: 9px !important;
+			}
+		}
+	</style>
+	<!-- Custom responsive enhancements : END -->
+
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+<!--
+	The email background color (#ffffff) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+
+<body width="100%" style="margin: 0; mso-line-height-rule: exactly; background-color: #ffffff;">
+	<center style="width: 100%; background-color: #ffffff; text-align: left;">
+
+		<!--[if mso | IE]>
+	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+		<tr>
+			<td>
+	<![endif]-->
+
+		<!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+		<!-- Preview Text Spacing Hack : BEGIN -->
+		<div style="display:none;font-size:0px;color:#333333;line-height:0px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+		Dear [firstname, fallback=Sir/Madam] [lastname], There’s no point resisting a powerful opponent. To triumph, you must use your surroundings to your advantage.
+		Be one of the first to view the all-new Lexus UX at the upcoming Singapore Motorshow 2019, Lexus Showcase from 10-13 January at Suntec City Convention Hall, Level 4
+		</div>
+		<!-- Preview Text Spacing Hack : END -->
+
+		<!-- Email Body : BEGIN -->
+		<table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto;background-color:#000000;"
+		 class="email-container">
+
+			<!-- Hero Image, Flush : BEGIN -->
+			<tr>
+				<td>
+					<table width="100%" style="max-width: 600px; background-color: #000000;" role="presentation" cellspacing="0" cellpadding="0"
+					 border="0">
+						<tr>
+							<td align="center" style="background-color: #000000;">
+								<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/header.jpg" width="600" height="314" alt="Lexus" border="0" style="vertical-align: bottom; display: block; width: 600px; max-width: 600px; height: auto; background: #dddddd; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 15px; color: #151515; margin: auto;"
+								 class="g-img fluid">
+							</td>
+						</tr>
+						
+					</table>
+				</td>
+			</tr>
+			<!-- Hero Image, Flush : END -->
+
+			<!-- 1 Column Text : BEGIN -->
+			<tr>
+				<td style="background-color: #ffffff; max-width: 600px;">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td  align="left" style="padding: 20px 35px 30px 35px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #000000;"
+							 class="sm-pad text-td sm-pad-bt">
+								<p style="margin: 0 0 18px;"><b>Dear John Doe,</b></p>
+								<p style="margin: 0 0 18px;">There’s no point resisting a powerful opponent. To triumph, you must use your surroundings to your advantage.</p>
+								<p style="margin: 0 0 18px;">In an urban environment filled with unpredictable traffic and road conditions, a stable yet responsive ride becomes crucial. With a streamlined design that allows airflow to be harnessed for enhanced stability and driving dynamics, the new UX lets you slice through the air and enjoy a seamless drive.</p>
+								<p style="margin: 0 0 18px;">Be one of the first to view the <b><u>All-New Lexus UX now!</u></b></p>
+								<p style="margin: 0 0 18px;"><b>Venue:</b><br/>Singapore Motorshow 2019, <br/>Suntec City Convention Hall,<br/>Level 4</p>
+								<p style="margin: 0 0 18px;"><b>Purchase ticket to the Motorshow </b><a class="" href="https://www.motorshow.com.sg/2019/home/" style="text-align: left; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-decoration: underline; font-size: 16px; line-height:20px; color: #5dc2f2;">here</a> </p>
+								<p style="margin: 0;"> <b>Date:</b><br/> 10 – 13 January 2019</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- 1 Column Text : END -->
+			<!--book to drive area BEGIN-->
+			<tr>
+				<td valign="top" style="background-color: #ffffff;padding: 0; max-width: 600px;" align="left">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						
+						<tr>
+							<td valign="top" align="center"  width="50%" style=" text-align: center;">
+								<a href="https://www.lexus.com.sg/en/contact-us/find-a-dealer.html?utm_source=UX&amp;utm_medium=edm&amp;utm_campaign=Trigger%20edm" target="_blank" style="margin:0;margin:0;padding:0;display: block;"><img class="fluid g-img" src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/left-side.jpg" alt="Find a Dealer" width="100%" style="display: block;width: 100%; height: 150px;max-width: 600px;"></a>
+							</td>
+							<td valign="top" align="center"  width="50%" style=" text-align: center;">
+								<a href="https://www.lexus.com.sg/en/contact-us/book-a-test-drive.html?utm_source=UX&amp;utm_medium=edm&amp;utm_campaign=Trigger%20edm" target="_blank" style="margin:0;margin:0;padding:0;display: block;"><img class="fluid g-img" src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/right-side.jpg" alt="Online Enquiry" width="100%" style="display: block;width: 100%; height: 150px;max-width: 600px;"></a>
+							</td>
+							
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!--book to drive area END--->
+
+			<!-- Mid Line : BEGIN -->
+			<tr>
+				<td valign="bottom" style="background-color: #000000;padding: 0; max-width: 600px;" align="left">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td style="background-color: #000000;padding: 0; max-width: 600px;" align="left">
+								<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+									
+									<tr>
+										<td align="left" class="text-td sm-pad" style="padding: 38px 35px 25px 35px; text-align: left;">
+											<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+												<tr>
+													<td width="100%" align="left" class="" style=" text-align: left;font-family:Arial, 'Helvetica', Helvetica, sans-serif; font-size:22px;text-align:left; color:#ffffff;">
+														<p style="font-weight: bold;line-height:24px;padding: 0; margin: 0 0 18px;">
+															POWER THROUGH DESIGN
+														</p>
+														<p class="mobileview" style="font-size:16px;line-height:18px;padding: 0;margin: 0;">With ground-breaking aerodynamic features, feel closer to the road and get more out of your drive.</p>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td align="bottom" align="left" width="100%" style=" text-align: left;">
+								<a class="" href="https://www.lexus.com.sg/en/models/ux.html?utm_source=UX&utm_medium=edm&utm_campaign=Trigger%20edm" style="text-align: left; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-decoration: none; color: #ffffff;line-height: 0;">
+									<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/cta-learn-more.jpg" width="600" height="69"
+									 alt="learn more" border="0" style="width: 600px; height: auto; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515; display: block;line-height: 0;"
+									 class="g-img fluid">
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" style="background-color: #000000;padding: 0; max-width: 600px;" align="left">
+								<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/car.jpg" width="600" height="210"
+												 alt="learn more" border="0" style=" width: 600px; height: auto; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515; display: block; height: 210px;"
+												 class="g-img fluid">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<!-- Mid Line : END -->
+			
+			<!-- Learning image : BEGIN -->
+			<tr>
+				<td valign="bottom" align="center" style="background-color: #ffffff; max-width: 600px;">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td valign="bottom" style="padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515;"
+							 class="">
+								<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr>
+										<td align="center" valign="bottom" width="50%"  style="padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515;line-height: 0;"
+										 class="">
+										 	<a href="https://www.lexus.com.sg/en/models/ux.html?utm_source=UX&amp;utm_medium=edm&amp;utm_campaign=Trigger%20edm#features" target="_blank" style="margin:0;margin:0;padding:0;display: block;line-height: 0;"><img height="335" width="300" class="g-img fluid" src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/left-car-side.jpg" alt="Aero stabilizing Blade Lights" width="100%" style="display: block;width: 100%; height: auto;">
+										 	</a>
+										</td>
+										<td align="center" valign="bottom" width="50%" style="padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515;"
+										 class="">
+										 	<a href="https://www.lexus.com.sg/en/models/ux.html?utm_source=UX&amp;utm_medium=edm&amp;utm_campaign=Trigger%20edm#features" target="_blank" style="margin:0;margin:0;padding:0;display: block;line-height: 0;">
+										 		<img height="335" width="300" src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/right-car-side.jpg" alt="Aero stabilizing arch moldings" width="100%" style="display: block; width: 100%; height: auto;" class="fluid g-img"></a>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr>
+				<td valign="top" style="background-color: #000000;padding: 0; max-width: 600px;" align="left">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						
+						<tr>
+							<td valign="top" align="center"  width="100%" style=" text-align: left;">
+								<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/car-back.jpg" width="600" height="212"
+									 alt="learn more" border="0" style=" max-width: 600px; height: auto; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;color: #151515; display: block;"
+									 class="g-img fluid">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- Learning image : END -->
+			
+			<!-- Footer : BEGIN -->
+			<tr>
+				<td class="sm-pad" style="width: 100%; background-color: #000000; padding: 0 35px; font-family: 'Helvetica-Light', sans-serif; font-size: 12px; line-height: 18px; font-weight: 100; text-align: left; max-width: 600px;"
+				 align="left">
+					<table width="100%" role="presentation" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td>
+								<table width="100%" role="presentation" cellspacing="0" cellpadding="0" border="0">
+									<tr>
+										<td width="50%" class="w-75"  style="padding: 0 0 10px 0" align="left" valign="bottom">
+											<table width="100%" role="presentation" cellspacing="0" cellpadding="0" border="0">
+												<tr>
+													<td height="15" class="button-td button-td-primary" style="padding: 0" align="left" valign="bottom">
+														<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/text.jpg" width="274" height="15" alt=""
+														 border="0" style="width: 100%; max-width: 274px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333; display: block;"
+														 class="g-img">
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td width="50%" class="w-25" height="40" style="padding: 0 0 10px 0" align="left" valign="bottom">
+											<table width="100%" role="presentation" cellspacing="0" cellpadding="0" border="0">
+												<tr>
+													<td width="20" height="40" class="button-td button-td-primary pd-10 wid-12" style="padding: 0 25px;" align="left" valign="bottom">
+														<a class="button-a button-a-primary" href="https://www.facebook.com/LexusSG/" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+														<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/fb.jpg" width="20" height="40" alt="Facebook"
+														border="0" style="width: 20px; max-width: 20px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;"
+														class="g-img fluid wid-12">
+														</a>
+													</td>
+													<td height="40" class="button-td button-td-primary wid-25" style="padding: 0;" align="left" valign="bottom">
+														<a class="button-a button-a-primary" href="https://www.instagram.com/lexussg/?hl=en" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+														<img src="https://edm-demos.constructdigital.net/inchcape/lexus/ticket-18418/img/insta.jpg" width="40" height="40"
+														alt="Instagram" border="0" style="width: 40px; max-width: 40px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;"
+														class="g-img fluid wid-25">
+														</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="sm-pad text-td-sm" align="left" style="padding: 0 35px 5px 35px; width: 100%; background-color: #000000; color: #ffffff; font-family: Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 18px;"
+				 align="left">
+					Copyright © Lexus Asia Pacific Division 2018
+
+				</td>
+			</tr>
+			<tr>
+				<td class="sm-pad text-td-sm" align="left" style=" padding: 0 35px; width: 100%; background-color: #000000; color: #ffffff; font-family: Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 18px; padding-bottom: 30px"
+				 align="left">
+					If you no longer wish to receive these updates, unsubscribe <a class="" href="#" style="text-align: left; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-decoration: underline; color: #ffffff;">here</a>.
+				</td>
+			</tr>
+			<!-- Footer : END -->
+
+			<!-- Copyrights : BEGIN -->
+			<!-- <tr>
+				<td>
+					<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							
+							<td style="width: 100%; padding: 34px; text-align: center; " class="copyrights sm-pad">
+								<p style="margin: 0; padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 12px; line-height: 18px; color: #000000;">&copy; 2018 Borneo Motors (Singapore) Pte. Ltd.
+									<br> If you prefer not to receive future emails from Lexus Marketing,
+									<br>please
+									<a href="#">click here to unsubscribe.</a>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr> -->
+			<!-- Copyrights : END -->
+
+		</table>
+		<!-- Email Body : END -->
+
+
+		<!--[if mso | IE]>
+	</td>
+	</tr>
+	</table>
+	<![endif]-->
+	</center>
+</body>
+
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<meta charset="utf-8"> <!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<!--
+	PHPStorm/Webstorm template var:
+	 Email Background color (default "#222222"): #ffffff
+	 Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+	 Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+	 Font-size (default "15px"): 14px
+	 Line-height (default "20px"): 16px
+	 Section padding (default "20px"): 36px
+	 Half padding (default "10px" = Section padding / 2): 18px
+	 Section Background Color (default "#ffffff"): #ffffff
+	 Component Margin bottom (default "10px"): 35px
+
+	 Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+	-->
+
+	<title>STE EDM</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+	<style>
+		* {
+			font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+	<!--<![endif]-->
+
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+
+		/* What it does: Remove spaces around the email design added by some email clients. */
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+		img {
+			-ms-interpolation-mode:bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+		*[x-apple-data-detectors],  /* iOS */
+		.unstyle-auto-detected-links *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+		img.g-img + div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		.no-u-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+		/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+		@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+			.email-container {
+				min-width: 320px !important;
+			}
+		}
+		/* iPhone 6, 6S, 7, 8, and X */
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+		/* iPhone 6+, 7+, and 8+ */
+		@media only screen and (min-device-width: 414px) {
+			.email-container {
+				min-width: 414px !important;
+			}
+		}
+
+	</style>
+	<!-- CSS Reset : END -->
+	<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+	<!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 35px !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+
+		/* What it does: Hover styles for buttons */
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+		.button-td-primary:hover,
+		.button-a-primary:hover {
+			background: #151515 !important;
+			border-color: #151515 !important;
+		}
+
+		/* Media Queries */
+		@media screen and (max-width: 600px) {
+
+			.email-container {
+				width: 100% !important;
+				margin: auto !important;
+			}
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				width: 100% !important;
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				/*font-size: 17px !important;*/
+			}
+			.w-20{
+				width: 28% !important;
+				max-width: 28% !important;
+			}
+			.w-80{
+				width: 72% !important;
+				max-width: 72% !important;
+			}
+			.text-right{
+				text-align: right !important; 
+			}
+			.sm-pad {
+				padding-left: 20px !important;
+				padding-right: 20px !important;
+				padding-top: 20px !important;
+				padding-bottom: 20px !important;
+			}
+		}
+
+	</style>
+	<!-- Progressive Enhancements : END -->
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+  <body width="100%" bgcolor="" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width:100%;background:rgb(255, 255, 255);text-align:left;">
+      <!-- Visually Hidden Preheader Text : BEGIN -->
+      <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family:sans-serif;">
+       STE EDM
+      </div>
+      <!-- Visually Hidden Preheader Text : END -->
+      <!--
+      Set the email width. Defined in two places:
+      1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+      2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+      Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+      -->
+      
+        <!--[if mso]>
+        <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+          <tr>
+            <td>
+              <![endif]-->
+        <!-- Email Body : BEGIN -->
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto;" class="email-container">
+	        <!-- Logo, Flush : BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#0b272d" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #0b272d;">
+			      <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="#0b272d" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#0b272d;">
+									    <tr>
+									    	<td bgcolor="#0b272d" style="background-color: #0b272d;" align="left" width="100%">
+												<a href="http://www.digisafe.com/dcsc/" target="_blank">
+							              			<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/masthead-top.jpg" width="183" height="77" alt="STE EDM" border="0" class=" g-img" style="width: 183px; height: 77px;">
+							              			</a>
+							            	</td>
+									        
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+	        <!-- Logo, Flush : END -->
+	        <!-- Logo, Flush : BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#d5edfa" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #d5edfa;">
+			      <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="#d5edfa" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d5edfa;">
+									    <tr>
+									    	<td bgcolor="#d5edfa" style="background-color: #d5edfa;" align="center" width="100%">
+							              			<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/masthead.jpg" width="600" height="296" alt="STE EDM" border="0" class="fluid g-img" style="width: 600px; height: 296px; ">
+							              			
+							            	</td>
+									        
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+	         <!-- Logo, Flush : END -->
+
+	        
+			<!-- TEXT AREA BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#d5edfa" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #d5edfa;">
+			     <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="#d5edfa" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d5edfa;">
+									    <tr>
+									        <td class="sm-pad" align="center" width="100%" valign="middle" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px; color: #000000;  text-align: center; max-width: 600px; padding: 35px 50px 35px; background-color: #d5edfa;">
+												<p style="margin: 0; line-height: 20px;font-size: 16px; margin-bottom: 10px;">
+												<b>Did you know that hacking cases more than doubled year-on-year?</b></p>
+												<p style="margin: 0; line-height: 20px;">At ST Engineering Cybersecurity Academy (STECA), we impart our domain expertise and knowledge to <b>Protect</b>, <b>Detect</b>, <b>Respond</b> and <b>Recover</b> from these cyber-threats effectively through theoretical and experiential cybersecurity training.</p>
+												<p>Pave your way to become a cybersecurity professional in this new digital age. We have courses tailored for new entrants and seasoned professionals alike.</p>
+												<p style="margin: 0; line-height: 20px;"><b>Check out our courses below.</b></p>
+									        </td>
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+			<!-- TEXT AREA END -->
+			<!-- Box color1 register with Text : BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+			      <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+									    <tr>
+									    	<!-- TABLE ORGANCE BEGIN -->
+									        <td class="stack-column" width="50%" valign="middle" style="font-family:Helvetica, sans-serif; font-size:16px;background-color: #f78046; color: #ffffff; ">
+									        	  <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f78046;">
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left; padding: 20px 23px 7px; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #f78046; color: #ffffff; text-transform: uppercase;">
+													        	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f78046;">
+																    <tr>
+																        <td  height="60" width="100%" valign="top" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #f78046; color: #ffffff; text-transform: uppercase;">
+																        	Cybersecurity by Design (CSBD)
+																        </td>
+																    </tr>
+																</table>
+
+													        </td>
+													    </tr>
+													    <tr>
+														    <td  width="100%" valign="middle" style="text-align: left; padding: 7px 23px 17px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:bold;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f78046;">
+																    <tr>
+																        <td height="16" width="100%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+																        	 	Course Ref No: NA
+																        </td>
+																    </tr>
+																</table>
+															</td>
+													    </tr>
+													    <tr>
+														    <td  width="100%" valign="middle" style="text-align: left; padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:bold;line-height: 16px; background-color: #db713d; color: #ffffff;">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#db713d;">
+																	    <tr>
+																	        <td height="48"  width="100%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+																	        	  IT professionals who are involved in the design of IT/OT systems. 
+																	        </td>
+																	    </tr>
+																</table>
+												          	</td>
+													    </tr>
+													    <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f78046;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff;">
+																	          	Eligibility
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+																	          	1 year in IT
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													     <!-- child table light color end -->
+													     <!-- child table dark color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#db713d;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff;">
+																	          	Duration
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+																	          		2 days (16 hrs)
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f78046;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff;">
+																	          	Fees
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+																	          	$1,200 (excluding GST)
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+													   <!-- child table dark color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#db713d;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff;">
+																	          	Funding
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+																	          		-
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f78046;">
+																	    <tr>
+																	        <td  height="48" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff;">
+																	          	Dates
+																	          	
+																	        </td>
+																	          <td height="48"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+																	          		<p style="margin: 0">10 - 11 Jan 2019</p>
+																			<p style="margin: 0">18 - 19 Feb 2019</p>
+																			<p style="margin: 0">14 - 15 Mar 2019</p>
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+													   <!-- child table dark color begin -->
+
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#db713d;">
+																	    <tr>
+																	        <td  height="140" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff;">
+																	          	Certification
+																	          	
+																	        </td>
+																	          <td height="140"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #db713d; color: #ffffff; ">
+																	          		<p style="margin: 0 0 0 0">Certificate of Completion by Nanyang Polytechnic and ST Engineering Cybersecurity Academy(STECA)</p>
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													      <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f78046; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f78046;">
+																	    <tr>
+																	        <td height="45"  width="50%" valign="middle" style="text-align: left; padding: 0 7px 0 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal; background-color: #f78046; ">
+																	          	<a href="https://gallery.mailchimp.com/218988aed0e5fb4fda3f9de4b/files/52e72c01-c955-43e7-b2d1-8dccd670fd72/csbd_cybersecurity_by_design.pdf" target="_blank"><img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_03.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;"></a>
+																          </td>
+																	          <td height="45" class="text-right"  width="50%" valign="middle" style="text-align: left; padding: 0 0 0 7px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;background-color: #f78046; color: #ffffff; ">
+																			    <a href="https://mailchi.mp/stee/course-registration" target="_blank">
+																	          		<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_05.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;"></a>
+																          </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+												</table>
+									          	
+									        </td>
+									        <!-- TABLE ORGANCE END -->
+									        <!-- TABLE RED BEGIN -->
+									        <td class="stack-column" width="50%" valign="middle" style="background-color: #f24e4d;color: #ffffff">
+									        	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f24e4d;">
+													    <tr>
+													    	<td  width="100%" valign="middle" style="text-align: left; padding: 20px 23px 7px; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #f24e4d; color: #ffffff;">
+													        	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f24e4d;">
+																    <tr>
+																        <td height="60" width="100%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:16px;font-weight:normal;line-height: 20px; background-color: #f24e4d; color: #ffffff;">
+																        	<p style="margin: 0; text-transform: uppercase; font-weight: bold;">Cyber Security Forensics Investigator (CSFI)</p>
+																			– SSG Approved Course
+																        </td>
+																    </tr>
+																</table>
+													        </td>
+													    </tr>
+													    <tr>
+													    	  <td  width="100%" valign="middle" style="text-align: left; padding:7px 23px 17px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+													        	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#f24e4d;">
+																	    <tr>
+																	        <td height="16" width="100%" valign="middle" style="text-align: left; padding:0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																	        	 	Course Ref No: CRS-Q-0032196-ICT
+																	        </td>
+																	    </tr>
+																</table>
+													          	
+													        </td>
+													    </tr>
+													    <tr>
+													    	<td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#d44241;">
+														    		<tr>
+														        		<td height="48" width="100%" valign="middle" style="text-align: left;padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																	        	   IT professionals who are tasked to investigate cyber breaches in a forensically sound manner. 
+																	     </td>
+																	</tr>
+																</table>
+															</td>
+													    </tr>
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f24e4d;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          	Eligibility
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          	1 year in cybersecurity 
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table light color end -->
+														 <!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d44241;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          	Duration
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          		4 days (30 hrs)
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table dark color end -->
+														  <!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f24e4d;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          	Fees
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          	$3,000 (excluding GST)
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table light color end -->
+														  <!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d44241;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          	Funding
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          		Yes. <a href="http://www.ssg-wsg.gov.sg/individuals.html?activeAcc=1&_ga=2.181575394.451130107.1544175867-1519298173.1539580549" target="_blank" style="font-family:Helvetica, sans-serif;font-size:13px; line-height:16px; color:#ffffff;text-decoration: underline; "> Find out more</a>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table dark color end -->
+														<!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f24e4d;">
+																    <tr>
+																        <td height="48"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          	Dates
+																          	
+																        </td>
+																          <td height="48"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+																          		18 - 21 Feb 2019
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table light color end -->
+														<!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d44241;">
+																    <tr>
+																        <td height="140"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          	Certification
+																          	
+																        </td>
+																          <td height="140"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #d44241; color: #ffffff; ">
+																          			<p style="margin: 0 0 10px 0"> Certificate of Competency by ST Engineering Cybersecurity Academy (STECA) </p>
+																          	<p style="margin: 0 0 0 0">Statement of Attainment by Skills Future Singapore (SSG)</p>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table dark color end -->
+														<!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #f24e4d; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f24e4d;">
+																    <tr>
+																        <td  height="45"  width="50%" valign="middle" style="text-align: left; padding: 0 7px 0 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;background-color: #f24e4d; color: #ffffff;">
+																			<a href="https://gallery.mailchimp.com/218988aed0e5fb4fda3f9de4b/files/4e5fa5a9-6c35-4512-84ea-a0a0d320ff1a/csfi_cybersecurity_forensics_investigator.pdf" target="_blank">
+																          	<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_07.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;"></a>
+															          </td>
+																          <td height="45" class="text-right" width="50%" valign="middle" style="text-align: left; padding: 0 0 0 7px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal; background-color: #f24e4d; color: #ffffff; ">
+																			  <a href="https://mailchi.mp/stee/course-registration" target="_blank">
+																         <img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_09.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px; "></a>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table light color end -->
+												</table>
+									        </td>
+									        <!-- TABLE RED END -->
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+			<!-- Box color1 register with Text : END -->
+	 		<!-- Box color2 register with Text : BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+			      <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+									    <tr>
+									    	<!-- TABLE ORGANCE BEGIN -->
+									        <td class="stack-column" width="50%" valign="middle" style="font-family:Helvetica, sans-serif; font-size:16px;background-color: #9fb048; color: #ffffff; ">
+									        	  <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#9fb048;">
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left; padding: 20px 23px 7px; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #9fb048; color: #ffffff; text-transform: uppercase;">
+													        	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#9fb048;">
+																    <tr>
+																        <td  height="80" width="100%" valign="top" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #9fb048; color: #ffffff; ">
+																        	<p style="margin: 0; text-transform: uppercase; font-weight: bold;">CNICF – Cyber Security Operations Specialist (CSOS)</p> –
+																				SSG Approved Course
+																        </td>
+																    </tr>
+																</table>
+													        </td>
+													    </tr>
+													    <tr>
+														    <td  width="100%" valign="middle" style="text-align: left; padding: 7px 23px 17px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:bold;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#9fb048;">
+																    <tr>
+																        <td height="16" width="100%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+																        	 	Course Ref No: CRS-Q-0030146-IT
+																        </td>
+																    </tr>
+																</table>
+															</td>
+													    </tr>
+													    <tr>
+														    <td  width="100%" valign="middle" style="text-align: left; padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:bold;line-height: 16px; background-color: #808e39; color: #ffffff;">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#808e39;">
+																	    <tr>
+																	        <td height="32"  width="100%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+																	        	  IT professionals who are involved with the defense of an IT network.
+																	        </td>
+																	    </tr>
+																</table>
+												          	</td>
+													    </tr>
+													    <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#9fb048;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff;">
+																	          	Eligibility
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+																	          	1 year in IT
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													     <!-- child table light color end -->
+													     <!-- child table dark color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#808e39;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff;">
+																	          	Duration
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+																	          			5 days (40 hrs)
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#9fb048;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff;">
+																	          	Fees
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+																	          		$4,800 (excluding GST)
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+													   <!-- child table dark color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#808e39;">
+																	    <tr>
+																	        <td  height="16" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff;">
+																	          	Funding
+																	          	
+																	        </td>
+																	          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+																	          		Yes. <a href="http://www.ssg-wsg.gov.sg/individuals.html?activeAcc=1&_ga=2.181575394.451130107.1544175867-1519298173.1539580549" target="_blank" style="font-family:Helvetica, sans-serif;font-size:13px; line-height:16px; color:#ffffff;text-decoration: underline; "> Find out more</a>
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#9fb048;">
+																	    <tr>
+																	        <td  height="48" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff;">
+																	          	Dates
+																	          	
+																	        </td>
+																	          <td height="48"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+																	          			<p style="margin: 0">7 - 11 Jan 2019</p>
+																				<p style="margin: 0">11 - 15 Feb 2019</p>
+																				<p style="margin: 0">11 - 15 Mar 2019</p>
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+													   <!-- child table dark color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#808e39;">
+																	    <tr>
+																	        <td  height="122" width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff;">
+																	          	Certification
+																	          	
+																	        </td>
+																	          <td height="122"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #808e39; color: #ffffff; ">
+																	          		<p style="margin: 0 0 10px 0">Certificate of Competency by ST Engineering Cybersecurity Academy (STECA) </p>
+
+																				<p style="margin: 0 0 0 0">	Statement of Attainment by Skills Future Singapore (SSG)</p>
+																	          	
+																	        </td>
+																	    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													    <!-- child table dark color end -->
+													    <!-- child table light color begin -->
+													    <tr>
+													        <td width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #9fb048; color: #ffffff; ">
+													        	    <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#9fb048;">
+																	     <tr>
+																        <td  height="45" width="50%" valign="middle" style="text-align: left; padding: 0 7px 0 0; font-family:Helvetica, sans-serif; font-weight:normal; background-color: #9fb048; ">
+																		  <a href="https://gallery.mailchimp.com/218988aed0e5fb4fda3f9de4b/files/ecde32aa-97f9-42e3-90ff-c82534bf1d9f/csos_cybersecurity_operations_specialist.pdf" target="_blank">
+																          	<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_15.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;">
+																          	</a>
+																        </td>
+																          <td height="45" class="text-right"  width="50%" valign="middle" style="text-align: left; padding: 0 0 0 7px; font-family:Helvetica, sans-serif;font-weight:normal; background-color: #9fb048; color: #ffffff; ">
+																		    <a href="https://mailchi.mp/stee/course-registration" target="_blank">
+																          		<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_16.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;">
+																          	</a>
+																        </td>
+																    </tr>
+																	</table>
+													        </td>
+													    </tr>
+													   <!-- child table light color end -->
+												</table>
+									          	
+									        </td>
+									        <!-- TABLE ORGANCE END -->
+									        <!-- TABLE RED BEGIN -->
+									        <td class="stack-column" width="50%" valign="middle" style="background-color: #11654e;color: #ffffff">
+									        	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#11654e;">
+													    <tr>
+													    	<td  width="100%" valign="middle" style="text-align: left; padding: 20px 23px 7px; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #11654e; color: #ffffff; text-transform: uppercase;">
+													        	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#11654e;">
+																    <tr>
+																        <td height="80" width="100%" valign="top" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:16px;font-weight:bold;line-height: 20px; background-color: #11654e; color: #ffffff;">
+																        	<p style="margin: 0; text-transform: uppercase; font-weight: bold;">Systems Security Certified Practioner (SSCP®)  </p>– SSG Approved Course
+																        </td>
+																    </tr>
+																</table>
+													        </td>
+													    </tr>
+													    <tr>
+													    	  <td  width="100%" valign="middle" style="text-align: left; padding:7px 23px 17px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+													        	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#11654e;">
+																	    <tr>
+																	        <td height="16" width="100%" valign="middle" style="text-align: left; padding:0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																	        	 	Course Ref No: CRS-Q-0032534-ICT
+																	        </td>
+																	    </tr>
+																</table>
+													          	
+													        </td>
+													    </tr>
+													    <tr>
+													    	<td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+														    	<table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:100%;background-color:#0c4a39;">
+														    		<tr>
+														        		<td height="32" width="100%" valign="middle" style="text-align: left;padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																	        	 IT Professionals.
+																	     </td>
+																	</tr>
+																</table>
+															</td>
+													    </tr>
+													     <!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#11654e;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          	Eligibility
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          		1 year in cybersecurity
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table light color end -->
+														 <!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#0c4a39;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          	Duration
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          		6 days (42 hrs)
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table dark color end -->
+														  <!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#11654e;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          	Fees
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          			$5,000 (excluding GST)
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														 <!-- child table light color end -->
+														  <!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#0c4a39;">
+																    <tr>
+																        <td height="16"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          	Funding
+																          	
+																        </td>
+																          <td height="16"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          		 Yes. <a href="http://www.ssg-wsg.gov.sg/individuals.html?activeAcc=1&_ga=2.181575394.451130107.1544175867-1519298173.1539580549" target="_blank" style="font-family:Helvetica, sans-serif;font-size:13px; line-height:16px; color:#ffffff;text-decoration: underline; "> Find out more</a>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table dark color end -->
+														<!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#11654e;">
+																    <tr>
+																        <td height="48"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          	Dates
+																          	
+																        </td>
+																          <td height="48"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+																          		<p style="margin: 0">7 - 11 Jan 2019</p>
+																				<p style="margin: 0">11 - 15 Feb 2019</p>
+																				<p style="margin: 0">11 - 15 Mar 2019</p>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table light color end -->
+														<!-- child table dark color begin -->
+														<tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#0c4a39;">
+																    <tr>
+																        <td height="122"  width="40%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          	Certification
+																          	
+																        </td>
+																          <td height="122"  width="60%" valign="middle" style="text-align: left; padding: 0; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #0c4a39; color: #ffffff; ">
+																          			<p style="margin: 0 0 10px 0">Certificate of Competency by ST Engineering Cybersecurity Academy (STECA)</p>
+
+																				<p style="margin: 0 0 0 0">Statement of Attainment by Skills Future Singapore (SSG)</p>
+																        </td>
+																    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table dark color end -->
+														<!-- child table light color begin -->
+													    <tr>
+													        <td  width="100%" valign="middle" style="text-align: left;padding: 12px 23px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;line-height: 16px; background-color: #11654e; color: #ffffff; ">
+													         	 <table bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#11654e;">
+																   		<tr>
+																	        <td  height="45"  width="50%" valign="middle" style="text-align: left; padding: 0 7px 0 0; font-family:Helvetica, sans-serif; font-weight:normal;background-color: #11654e; color: #ffffff;">
+																			  <a href="https://gallery.mailchimp.com/218988aed0e5fb4fda3f9de4b/files/a4d3c516-abb6-428d-b9ce-568d55d0c79d/sscp_cbk_training_seminar.pdf" target="_blank">
+																	          	<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_17.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px;">
+																	          	</a>
+																	        </td>
+																	          <td  height="45"  class="text-right" width="50%" valign="middle" style="text-align: left; padding: 0 0 0 7px; font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal;background-color: #11654e; color: #ffffff; ">
+																				  <a href="https://mailchi.mp/stee/course-registration" target="_blank">
+																	         <img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/st_18.jpg" width="120" height="45" alt="STE EDM" border="0" class=" g-img" style="width: 120px; height: 45px; "></a>
+																	        </td>
+																	    </tr>
+																</table>
+															</td>
+														</tr>
+														<!-- child table light color end -->
+												</table>
+									        </td>
+									        <!-- TABLE RED END -->
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+			<!-- Logo, Flush : BEGIN -->
+			<tr>
+			    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+			    <td width="100%" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+			      <!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+								    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#d5edfa;">
+									    <tr>
+									    	<td bgcolor="#ffffff" style="background-color: #ffffff;" align="center" width="100%">
+							              			<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/ste_cover_V2.jpg" width="600" height="215" alt="STE EDM" border="0" class="fluid g-img" style="width: 600px; height: 215px; ">
+							              			
+							            	</td>
+									        
+									     </tr>
+								    </table>
+			            <!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+			  </td>
+			</tr>
+	         <!-- Logo, Flush : END -->
+			
+			<!-- Box color2 register with Text : END -->
+			<!-- Listing : BEGIN -->
+		    <tr>
+		        <td dir="ltr" bgcolor="#ffffff" valign="middle" style="background-position:center !important;background-size:cover !important;padding:0;font-size:0; background-color: #ffffff;">
+		            <!--[if mso]>
+		            <table border="0" cellspacing="0" cellpadding="0" align="center" width="560" style="width:600px;">
+		              <tr>
+		                <td align="center" valign="top" width="600" style="width:600px;">
+		                  <![endif]-->
+				            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+				              
+			                    <tr>
+			                      <td style="padding:0; background-color: #ffffff;" valign="top" height="43">
+			                        <!--[if mso]>
+			                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="600" style="width:600px;">
+			                          <tr>
+			                            <td align="center" width="600" style="width:600px;">
+			                            <![endif]-->
+									  
+					                        <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+					                          <tr>
+					                            <td height="43" width="50%" style="font-family:Helvetica, sans-serif; font-size:13px;font-weight:normal; background-color: #ffffff; color: #000000;" align="left">
+							                      	<a href="https://www.stengg.com" target="_blank" style="text-decoration: none;">
+					                      				<img src="https://edm-demos.constructdigital.net/EDM/STE/18263/img/footer-logo.jpg" width="122" height="43" alt="STE EDM" border="0" class="g-img" style="display: block; max-width: 122px; height: auto;pointer-events:none;"/></a>
+						                        </td>
+							                        <td width="50%" style="font-family:Helvetica, sans-serif; font-size:10px;font-weight:normal;line-height: 12px; background-color: #ffffff; color: #000000; padding: 0 23px 0 0" align="right" >
+							                      		<br/><b><u>ST Electronics (Info-Security) Pte Ltd</u></b><br/>100 Jurong East Street 21<br/>ST Electronics Jurong East Building<br/>Singapore 609602<br/><a href="https://www.stengg.com">www.stengg.com</a><br/>(Regn. No: 199902746G)<br/> &nbsp;
+												  </td>
+					                          </tr>
+					                        </table>
+					                    <!--[if mso]>
+				                      	</td>
+					                    </tr>
+					                </table>
+					                <![endif]-->
+			                      </td>
+			                    </tr>
+				            </table>
+		            <!--[if mso]>
+		          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+		        </td>
+		    </tr>
+	    	<!-- Listing : END -->
+        
+      	</table>
+      <!-- Email Body : END -->
+      <!--[if mso]>
+    </td>
+  	</tr>
+	</table>
+	<![endif]-->
+   
+  </center>
+</body>
+</html>

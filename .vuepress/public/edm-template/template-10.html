@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+	<meta charset="utf-8">
+	<!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width">
+	<!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">
+	<!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<!--
+	PHPStorm/Webstorm template var:
+	 Email Background color (default "#222222"): #ffffff
+	 Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+	 Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+	 Font-size (default "15px"): 14px
+	 Line-height (default "20px"): 16px
+	 Section padding (default "20px"): 36px
+	 Half padding (default "10px" = Section padding / 2): 18px
+	 Section Background Color (default "#ffffff"): #ffffff
+	 Component Margin bottom (default "10px"): 35px
+
+	 Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+	-->
+
+	<title>STE EDM</title>
+	<!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+	<style>
+		* {
+			font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+	<!--<![endif]-->
+
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+		/* What it does: Remove spaces around the email design added by some email clients. */
+
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+
+		*[x-apple-data-detectors],
+		/* iOS */
+
+		.unstyle-auto-detected-links *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+
+		img.g-img+div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		.no-u-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+		/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+
+		@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+			.email-container {
+				min-width: 320px !important;
+			}
+		}
+
+		/* iPhone 6, 6S, 7, 8, and X */
+
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+
+		/* iPhone 6+, 7+, and 8+ */
+
+		@media only screen and (min-device-width: 414px) {
+			.email-container {
+				min-width: 414px !important;
+			}
+		}
+	</style>
+	<!-- CSS Reset : END -->
+	<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+	<!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 35px !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+		/* What it does: Hover styles for buttons */
+
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+
+		.button-td-primary:hover,
+		.button-a-primary:hover {
+			background: #151515 !important;
+			border-color: #151515 !important;
+		}
+
+		/* Media Queries */
+
+		@media screen and (max-width: 600px) {
+
+			.email-container {
+				width: 100% !important;
+				margin: auto !important;
+			}
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				/*font-size: 17px !important;*/
+			}
+			.w-20 {
+				width: 28% !important;
+				max-width: 28% !important;
+			}
+			.w-80 {
+				width: 72% !important;
+				max-width: 72% !important;
+			}
+		}
+	</style>
+	<!-- Progressive Enhancements : END -->
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+
+<body width="100%" bgcolor="" style="margin: 0; mso-line-height-rule: exactly;">
+	<center style="width:100%;background:rgb(255, 255, 255);text-align:left;">
+		<!-- Visually Hidden Preheader Text : BEGIN -->
+		<div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family:sans-serif;">
+			STE EDM
+		</div>
+		<!-- Visually Hidden Preheader Text : END -->
+		<!--
+      Set the email width. Defined in two places:
+      1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+      2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+      Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+      -->
+
+		<!--[if mso]>
+        <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+          <tr>
+            <td>
+              <![endif]-->
+		<!-- Email Header : BEGIN -->
+		<table cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="width:600px; background-color: #ffffff"
+		 class="email-container">
+			<tr>
+				<td style="padding:20px 0;text-align:center;"></td>
+			</tr>
+		</table>
+		<!-- Email Header : END -->
+		<!-- Email Body : BEGIN -->
+		<table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto;"
+		 class="email-container">
+			<!-- Logo, Flush : BEGIN -->
+			<tr>
+				<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+				<td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+					<!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+					<table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+						<tr>
+							<td bgcolor="#ffffff" style="background-color: #ffffff;" align="center" width="100%">
+								<img src="https://edm-demos.constructdigital.net/EDM/STE/img/masthead.png" width="600" height="289" alt="STE EDM" border="0" class="fluid g-img" style="width: 600px; height: 289px; ">
+
+							</td>
+						</tr>
+					</table>
+					<!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+				</td>
+			</tr>
+			<!-- Logo, Flush : END -->
+
+			<!-- TEXT AREA BEGIN -->
+			<tr>
+				<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+				<td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+					<!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+					<table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+						<tr>
+							<td width="100%" valign="middle" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 16px; color: #000000;  text-align: left; max-width: 600px; padding: 35px 35px; background-color: #ffffff;">
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									Dear Cybersecurity Enthusiast,
+								</p>
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									If you have not sign up, this is a follow up email to the earlier invitation to ST Engineering’s inaugural<strong> Cybersecurity Summit 2018 on Friday, 9 Nov 2018.</strong> The theme for the seminar is “
+									<strong>
+										<i>Taking Back the Initiative</i>
+									</strong>”.
+								</p>
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									Cyber-attacks have become more frequent. Consequences of an attack can be severe; whether it is a data compromise or disruption
+									to critical infrastructure. Too often are we finding ourselves reacting to cyber-incidents. We are constantly being
+									put on the back-foot by cyber-attackers and picking up pieces in the aftermath. This Summit brings together eminent
+									experts from across the globe to share why, how and what we can do to stop being passive in the face of cyber-threats.
+									We have invited speakers with experience in designing and managing cyber security policies and systems as well as
+									cyber-practitioners. They will share their perspective on what leaders like yourself can do to
+									<i>take back the initiative</i>
+									and be proactive in taking on the cybersecurity challenges in an increasingly challenging environment.
+								</p>
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									The Summit will also be an opportunity for you to join other leaders and top management from government agencies, statutory
+									boards, CIIs and commercial enterprises to discuss the future of cybersecurity.
+								</p>
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									It’s our pleasure and honour to invite you to join us at the inaugural Summit.
+								</p>
+								<p style="margin: 0 0 25px 0; line-height: 16px;">
+									We look forward to seeing you at the ST Engineering Cybersecurity Summit 2018!
+								</p>
+								<p style="margin: 0 0 0 0; line-height: 16px;">
+									Warmest Regards,
+								</p>
+								<p style="margin: 0 0 0 0; line-height: 16px;">
+									ST Engineering Electronics
+								</p>
+							</td>
+						</tr>
+					</table>
+					<!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+				</td>
+			</tr>
+			<!-- TEXT AREA END -->
+			<!-- Box cta register with Text : BEGIN -->
+			<tr>
+				<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+				<td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+					<!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+					<table bgcolor="#0d1e65" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#0d1e65;">
+						<tr>
+							<td valign="middle" style="text-align: center; padding: 37px 60px 24px 60px; background-color: #0d1e65;" align="center">
+								<img src="https://edm-demos.constructdigital.net/EDM/STE/img/text.png" width="105" height="25" alt="RSVP" border="0" class="g-img" style="margin: auto; width: 105px; height: auto;"
+								/>
+							</td>
+						</tr>
+						<tr>
+							<td valign="middle" style="text-align: center; padding: 0 60px 10px 60px; background-color: #0d1e65;font-family:Helvetica, sans-serif; font-size:14px;font-weight:normal; line-height: 16px; color:#ffffff;"
+							 align="center">
+								<p style="margin:0 0 0 0; color: #ffffff;">Please click here:</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="middle" style="text-align: center; padding: 0 60px 0 60px; background-color: #0d1e65;" align="center">
+								<a href="#" target="_blank" style="text-decoration: none;">
+									<img src="https://edm-demos.constructdigital.net/EDM/STE/img/cta-register.png" width="184" height="38" alt="register" border="0" class="g-img" style="margin: auto; width: 184px; height: auto;"
+									/>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td valign="middle" style="text-align: center; padding: 24px 60px 20px 60px; font-family:Helvetica, sans-serif; font-size:14px;font-weight:normal;line-height: 16px; color:#ffffff;">
+								<p style="margin:0 0 10px 0; color: #ffffff;">
+									For enquiries, please contact Ms Chloris Teo
+									<br>
+									<a href="mailto:teo.yanping.chloris@stee.stengg.com" target="_blank" style="font-family:Helvetica, sans-serif;font-size:14px; line-height:16px; color:#01a3c8;text-decoration: none; ">teo.yanping.chloris@stee.stengg.com</a> | 6568 7184
+								</p>
+							</td>
+						</tr>
+					</table>
+					<!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+				</td>
+			</tr>
+			<!-- Box cta register with Text : END -->
+			<!-- Box cta register with Text : BEGIN -->
+			<tr>
+				<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+				<td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important; background-color: #ffffff;">
+					<!--[if mso]>
+			            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+			              <tr>
+			                <td align="center" valign="top" width="100%" style="width:100%;">
+			                  <![endif]-->
+					<table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+						<tr>
+							<td width="100%" valign="middle" style="text-align: center; padding: 40px 60px 40px 60px; font-family:Helvetica, sans-serif; font-size:14px;font-weight:normal;line-height: 16px; color:#ffffff;">
+								<p style="margin:0 0 10px 0; color: #00a9ce;">
+									<strong>ST Engineering Cybersecurity Summit</strong>
+								</p>
+								<p style="margin:0 0 10px 0; color: #000000;">
+									9 November 2018
+								</p>
+								<p style="margin:0 0 10px 0; color: #000000;">
+									Hilton Singapore | Grand Ballroom 1 | Level 3
+								</p>
+								<p style="margin:0 0 0 0; color: #000000;">
+									581 Orchard Road, Singapore 238883
+								</p>
+							</td>
+						</tr>
+					</table>
+					<!--[if mso]>
+			          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+				</td>
+			</tr>
+			<!-- Box cta register with Text : END -->
+
+			<!-- Listing : BEGIN -->
+			<tr>
+				<td dir="ltr" bgcolor="#ffffff" valign="middle" style="background-position:center !important;background-size:cover !important;padding:0;font-size:0; background-color: #ffffff;">
+					<!--[if mso]>
+		            <table border="0" cellspacing="0" cellpadding="0" align="center" width="560" style="width:560px;">
+		              <tr>
+		                <td align="center" valign="top" width="560" style="width:560px;">
+		                  <![endif]-->
+					<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+						<tr>
+							<td valign="middle" style="text-align: left; padding: 20px 60px 20px 45px; font-family:Helvetica, sans-serif; font-size:35px;font-weight:normal;line-height: 35px; color:#ffffff; background-color: #00a9ce;"
+							 width="100%">
+								<h2 style="font-family:Helvetica, sans-serif; font-size:35px;font-weight:normal;line-height: 35px; color:#ffffff; margin: 0; padding: 0;">
+									Programme
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 50px 40px 0 40px;">
+								<!--[if mso]>
+				                  <table border="0" cellspacing="0" cellpadding="0" align="center" width="520" style="width:520px;">
+				                    <tr>
+				                      <td align="center" valign="top" width="520" style="width:520px;">
+				                        <![endif]-->
+								<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+									<tr>
+										<td style="border-bottom:1px solid #BDBEBC;padding-top:10px;padding-left:10px;padding-right:20px;padding-bottom:15px;">
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															12.30pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Registration and Lunch</strong>
+														</p>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom:1px solid #BDBEBC;padding-left:10px;padding-right:20px;padding-bottom:15px;padding-top:15px;">
+											<!--[if mso]>
+							                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="480" style="width:480px;">
+							                          <tr>
+							                            <td align="center" width="480" style="width:480px;">
+							                            <![endif]-->
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															1.20pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0 0 5px;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Welcome & Opening Remarks</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Mr Lau Thiam Beng, Deputy President (Operations)/President, Defence Business & President, Cybersecurity Systems,
+															ST Engineering Electronics</p>
+													</td>
+												</tr>
+											</table>
+											<!--[if mso]>
+								                      	</td>
+									                    </tr>
+									                </table>
+									                <![endif]-->
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom:1px solid #BDBEBC;padding-left:10px;padding-right:20px;padding-bottom:15px;padding-top:15px;">
+											<!--[if mso]>
+							                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="480" style="width:480px;">
+							                          <tr>
+							                            <td align="center" width="480" style="width:480px;">
+							                            <![endif]-->
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															1.30pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0 0 5px;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Where it all goes? - We invest a lot in cyber security, organizations are still breached; It’s time to return
+																back to the drawing table</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Mr Buky Carmeli, Former Director-General and Founder of the Israeli National Cyber Security Authority</p>
+
+														<p style="margin:15px 0 5px 0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Time for Leaders to Lead</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Mr James Monnier Simon, Jr, Principal Partner, JCJKK LLC; former Assistant Director of Central Intelligence
+															for Administration and; former Microsoft Chief Strategist for worldwide public sector</p>
+
+														<p style="margin:15px 0 5px 0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Healthcare: Cyber’s Newest and Easiest Target</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Dr Randy Craig Axelrod, Venture Partner, SpringRock Ventures; 30 year healthcare industry veteran in areas
+															of operations, R&D, innovation, cybersecurity, process improvements and clinical systems integration</p>
+													</td>
+												</tr>
+											</table>
+											<!--[if mso]>
+								                      	</td>
+									                    </tr>
+									                </table>
+									                <![endif]-->
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom:1px solid #BDBEBC;padding-left:10px;padding-right:20px;padding-bottom:15px;padding-top:15px;">
+											<!--[if mso]>
+							                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="480" style="width:480px;">
+							                          <tr>
+							                            <td align="center" width="480" style="width:480px;">
+							                            <![endif]-->
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															3.00pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0 0 0px;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>Tea Refreshments</strong>
+														</p>
+
+													</td>
+												</tr>
+											</table>
+											<!--[if mso]>
+								                      	</td>
+									                    </tr>
+									                </table>
+									                <![endif]-->
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom:1px solid #BDBEBC;padding-left:10px;padding-right:20px;padding-bottom:15px;padding-top:15px;">
+											<!--[if mso]>
+							                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="480" style="width:480px;">
+							                          <tr>
+							                            <td align="center" width="480" style="width:480px;">
+							                            <![endif]-->
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															3.30pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0px 0 5px;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px;color:#ffffff;">
+															<strong>OT Hacking Group: An Evolving Threat</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Mr. Yehonatan Kfir
+															<br /> CTO Radiflow Ltd; ICS/OT cybersecurity expert; former IDF Unit 8200 Cyber Innovation Division (new product
+															research) veteran
+														</p>
+
+														<p style="margin:15px 0 5px 0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px;color:#ffffff;">
+															<strong>Cyber security life cycle from a different perspective. A holistic view</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Ms. Anett Mádi-Nátor
+															<br /> Board member, European Cyber Security Organisation (ECSO) Task Force on future EU cybersecurity; Lead to
+															NATO Cyber Defence Capability Team and; Administrative Head, Hungarian government cyber security centre
+														</p>
+
+
+
+														<p style="margin:15px 0 5px;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px;color:#ffffff;">
+															<strong>Closing Address</strong>
+														</p>
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">Mr Ravinder Singh, President, ST Engineering Electronics
+														</p>
+
+													</td>
+												</tr>
+											</table>
+											<!--[if mso]>
+								                      	</td>
+									                    </tr>
+									                </table>
+									                <![endif]-->
+										</td>
+									</tr>
+
+									<tr>
+										<td style="padding-left:10px;padding-right:20px;padding-top:15px;">
+											<!--[if mso]>
+							                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="480" style="width:480px;">
+							                          <tr>
+							                            <td align="center" width="480" style="width:480px;">
+							                            <![endif]-->
+											<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="15%" class="w-20" style="" align="left">
+														<p style="margin:0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;font-weight:lighter;">
+															6pm
+														</p>
+													</td>
+													<td width="85%" class="w-80" style="" align="left">
+														<p style="margin:0 0 0;font-family:Helvetica, sans-serif;font-size:14px;line-height:16px; color:#ffffff;">
+															<strong>End of event </strong>
+														</p>
+													</td>
+												</tr>
+											</table>
+											<!--[if mso]>
+								                      	</td>
+									                    </tr>
+									                </table>
+									                <![endif]-->
+										</td>
+									</tr>
+
+								</table>
+								<!--[if mso]>
+					                </td>
+					              </tr>
+					            </table>
+					            <![endif]-->
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:0; background-color: #286782;" valign="top">
+								<!--[if mso]>
+			                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="600" style="width:600px;">
+			                          <tr>
+			                            <td align="center" width="600" style="width:600px;">
+			                            <![endif]-->
+								<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+									<tr>
+										<td width="100%" style="" align="center">
+
+											<img src="https://edm-demos.constructdigital.net/EDM/STE/img/top-footer.png" width="600" height="182" alt="STE EDM" border="0" class="fluid g-img" style="display: block; max-width: 600px; height: auto;"
+											/>
+
+										</td>
+									</tr>
+								</table>
+								<!--[if mso]>
+				                      	</td>
+					                    </tr>
+					                </table>
+					                <![endif]-->
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:0; background-color: #286782;" valign="top">
+								<!--[if mso]>
+			                        <table border="0" cellspacing="0" cellpadding="0" align="center" width="600" style="width:600px;">
+			                          <tr>
+			                            <td align="center" width="600" style="width:600px;">
+			                            <![endif]-->
+								<table bgcolor="#286782" border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+									<tr>
+										<td width="100%" style="" align="left">
+											<a href="#" target="_blank" style="text-decoration: none; ">
+												<img src="https://edm-demos.constructdigital.net/EDM/STE/img/footer.png" width="600" height="153" alt="STE EDM" border="0" class="fluid g-img" style="display: block; max-width: 600px; height: auto;pointer-events:none;"
+												/>
+											</a>
+										</td>
+									</tr>
+								</table>
+								<!--[if mso]>
+				                      	</td>
+					                    </tr>
+					                </table>
+					                <![endif]-->
+							</td>
+						</tr>
+					</table>
+					<!--[if mso]>
+		          </td>
+			        </tr>
+			      </table>
+			      <![endif]-->
+				</td>
+			</tr>
+			<!-- Listing : END -->
+
+		</table>
+		<!-- Email Body : END -->
+		<!--[if mso]>
+    </td>
+  	</tr>
+	</table>
+	<![endif]-->
+
+		<!-- Email Footer : BEGIN -->
+		<table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width:600px;">
+			<tr>
+				<td style="padding:20px 0;text-align:center;"></td>
+			</tr>
+		</table>
+		<!-- Email Footer : END -->
+	</center>
+</body>
+
+</html>

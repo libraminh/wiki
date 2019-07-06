@@ -1,13 +1,14 @@
 const path = require('path')
 
 module.exports = {
-  title: 'Minh Le',
+  title: 'minhle',
   description: 'Wikipedia',
   base: '/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Wiki', link: '/wiki/' }
+      { text: 'Wiki', link: '/wiki/' },
+      { text: 'EDMs', link: '/edms/' }
     ],
     sidebar: [
       {

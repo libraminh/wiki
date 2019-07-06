@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<meta charset="utf-8"> <!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<!--
+	PHPStorm/Webstorm template var:
+	 Email Background color (default "#222222"): #ffffff
+	 Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+	 Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+	 Font-size (default "15px"): 14px
+	 Line-height (default "20px"): 16px
+	 Section padding (default "20px"): 36px
+	 Half padding (default "10px" = Section padding / 2): 18px
+	 Section Background Color (default "#ffffff"): #ffffff
+	 Component Margin bottom (default "10px"): 35px
+
+	 Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+	-->
+
+	<title>SAP - Innovation Agenda</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+	<style>
+		* {
+			font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+	<!--<![endif]-->
+
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+
+		/* What it does: Remove spaces around the email design added by some email clients. */
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+		img {
+			-ms-interpolation-mode:bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+		*[x-apple-data-detectors],  /* iOS */
+		.unstyle-auto-detected-links *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+		img.g-img + div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		.no-u-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+		/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+		@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+			.email-container {
+				min-width: 320px !important;
+			}
+		}
+		/* iPhone 6, 6S, 7, 8, and X */
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+		/* iPhone 6+, 7+, and 8+ */
+		@media only screen and (min-device-width: 414px) {
+			.email-container {
+				min-width: 414px !important;
+			}
+		}
+
+	</style>
+	<!-- CSS Reset : END -->
+	<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+	<!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 35px !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+
+		/* What it does: Hover styles for buttons */
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+		.button-td-primary:hover,
+		.button-a-primary:hover {
+			background: #151515 !important;
+			border-color: #151515 !important;
+		}
+
+		/* Media Queries */
+		@media screen and (max-width: 600px) {
+
+			.email-container {
+				width: 100% !important;
+				margin: auto !important;
+			}
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				/*font-size: 17px !important;*/
+			}
+			.pad-0{
+				padding-left: 0 !important;
+				padding-right: 0 !important;
+			}
+			.stack-column-cus{
+				width: 100px !important;
+			}
+			.copy-right-text{
+				padding-top: 10px !important;
+				text-align: left !important; 
+			}
+		}
+
+	</style>
+	<!-- Progressive Enhancements : END -->
+
+
+	<!-- Custom responsive enhancements : BEGIN -->
+	<style>
+		/* iPhone 6->X Plus */
+		@media only screen and (max-device-width: 414px) {
+			.sm-img-full {
+				width: 100% !important;
+			}
+			.sm-left {
+				text-align: left !important;
+			}
+			.sm-pad-left {
+				padding-left: 23px !important;
+			}
+			.sm-pad-right {
+				padding-left: 23px !important;
+			}
+			.sm-pad {
+				padding-left: 23px !important;
+				padding-right: 23px !important;
+			}
+			.sm-center {
+				text-align: center !important;
+			}
+			.p-img {
+				height: auto !important;
+			}
+			.title {
+				font-size: 14.5px;
+				line-height: 18px;
+			}
+
+			/* Not re-usable */
+			.brand-story {
+				padding-top: 22px !important;
+				padding-bottom: 22px !important;
+			}
+			.finance-right-col {
+				padding-top: 42px !important;
+				padding-bottom: 42px !important;
+			}
+
+			.finance-right-col p {
+				line-height: 22px !important;
+			}
+
+			.copyrights {
+				padding-top: 13px !important;
+				padding-bottom: 13px !important;
+			}
+			.copyrights p {
+				font-size: 7px !important;
+				line-height: 9px !important;
+			}
+		}
+	</style>
+	<!-- Custom responsive enhancements : END -->
+
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+<!--
+	The email background color (#ffffff) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; mso-line-height-rule: exactly; background-color: #ffffff;">
+<center style="width: 100%; background-color: #ffffff; text-align: left;">
+	<!--[if mso | IE]>
+	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+		<tr>
+			<td>
+	<![endif]-->
+
+	<!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+	<!-- Preview Text Spacing Hack : BEGIN -->
+	<div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;">
+		&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+	</div>
+	<!-- Preview Text Spacing Hack : END -->
+
+	<!-- Email Body : BEGIN -->
+	<table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto;" class="email-container">
+
+		<!-- Hero Image, Flush : BEGIN -->
+		<tr>
+			<td width="600" style="background-color: #000000; padding:0" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+                        <td style="background-color: #000000;" class="">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td style="padding: 17px 20px 17px 30px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;background-color: #000000; color: #151515;" class="sm-pad text-td">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="50%" class="">
+                                                    <a href="https://www.sap.com/sea/index.html?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=homepage" target="_blank">
+                                                        <img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/logo.jpg" width="73" height="36" alt="SAP - Innovation Agenda" border="0" style="width: 73px; height: 36px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;" class="g-img">
+                                                    </a>
+                                                </td>
+                                                <td align="right" width="50%" class="">
+                                                    <a href="https://innovationagenda.asia/?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=homepage" target="_blank">
+                                                        <img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/logo-text.jpg" width="101" height="36" alt="SAP - Innovation Agenda" border="0" style="width: 101px; height: 36px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="g-img">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+						            </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+					<!-- Hero Image, Flush : BEGIN -->
+					<tr>
+						<td align="center" valign="bottom" width="100%" style="background-color: #000000;padding: 0;">
+							<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/banner.jpg" width="100%" height="255" alt="SAP - Innovation Agenda" border="0" style="width: 100%; max-width: 600px; height: auto; vertical-align: bottom; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;" class="fluid g-img">
+						</td>
+					</tr>
+					<!-- Hero Image, Flush : END -->
+				</table>
+				
+			</td>
+		</tr>
+		<!-- Hero Image, Flush : END -->
+		
+
+		<!-- 1 Column Text : BEGIN -->
+		<tr>
+			<td style="background-color: #ffffff;" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td style="padding: 30px 30px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; color: #151515;" class="sm-pad text-td">
+							<p style="margin: 0 0 18px;">Dear &lt;First Name &gt;,</p>
+							<p style="margin: 0; padding: 0;">It’s Asia’s time! From a fast growing middle class to high social media penetration, the signs of Asian digital growth are truly unmistakeable. What are some of the hottest technologies turbocharging Asian innovation today, and what lessons can we pick up from the digital transformation journeys taken on both by Asian SMEs and large corporations? All the latest industry scoop in this Innovation Agenda newsletter, so read on!</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- 1 Column Text : END -->
+
+		<!-- Mid Line : BEGIN -->
+		<tr>
+			<td style="padding: 0;" align="center" style="background-color: #ffffff" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td class="sm-pad text-td" style=" padding:0 30px 30px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;">
+							<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+								<tr>
+									<td style=" padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;">
+										<tr>
+											<td class="mid-line" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 30px; line-height: 34px; font-weight: bold; color: #f0ab00;">
+												<p style="margin: 0 0 0 0; padding: 0;">
+													Hottest Reads
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/cfo/do-cfos-make-good-ceos?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=cfos_make_good_ceos" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 10px 0 0;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-1.jpg" width="100%" height="132" alt="Do CFOs Make Good CEOs?" border="0" style="width: 100%; height: 132px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000;height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">Do CFOs Make Good CEOs?</p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">As Jack Ma exits Alibaba's leadership, Daniel Zhang takes over the reins of the Chinese tech giant...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px; background-color: #000000;">
+																			<a href="https://innovationagenda.asia/cfo/do-cfos-make-good-ceos?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=cfos_make_good_ceos" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+													
+												</a>
+											</td>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/ceo/can-myanmars-family-owned-businesses-ready-becoming-intelligent-enterprise?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=family_owned_business" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 0 0 10px ;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0 ; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-2.jpg" width="100%" height="132" alt="How Can Myanmar’s Family Firms Be Industry 4.0 Ready" border="0" style="width: 100%; height: 132px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000;height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">How Can Myanmar’s Family Firms Be Industry 4.0 Ready</p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">As Myanmar comes out of the political shadow, what lies ahead for its digital...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px;background-color: #000000;">
+																			<a href="https://innovationagenda.asia/ceo/can-myanmars-family-owned-businesses-ready-becoming-intelligent-enterprise?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=family_owned_business" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/cio/box-office-superheroes-an-extraordinary-data-story?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=box_office_superheroes" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 10px 0 0;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-3.jpg" width="100%" height="132" alt="Box-Office Superheroes: An Extraordinary Data Story" border="0" style="width: 100%; height: auto; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000;height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">Box-Office Superheroes: An Extraordinary Data Story </p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">Wonder which superhero movie will rake in the biggest profits in the next...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px;background-color: #000000;">
+																			<a href="https://innovationagenda.asia/cio/box-office-superheroes-an-extraordinary-data-story?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=box_office_superheroes" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+													
+												</a>
+											</td>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/cio/industry-4-0-making-it-real-in-southeast-asia?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=southeast_asia" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 0 0 10px ;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0 ; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-4.jpg" width="100%" height="132" alt="Industry 4.0: Making it Real in Southeast Asia" border="0" style="width: 100%; height: auto; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000;height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">Industry 4.0: Making it Real in Southeast Asia</p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">Innovation's no longer that throwaway term we know. Read how Southeast...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px;background-color: #000000;">
+																			<a href="https://innovationagenda.asia/cio/industry-4-0-making-it-real-in-southeast-asia?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=southeast_asia" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/chro/grooming-for-greater-things-emplacing-your-best-talent-for-succession?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=grooming_for_greater_things" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 10px 0 0;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-5.jpg" width="100%" height="132" alt="Emplacing your best talent for succession" border="0" style="width: 100%; height: auto; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000;height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">Emplacing your best talent for succession</p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">When searching for people to succeed you in your leadership role, limiting...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px; background-color: #000000;">
+																			<a href="https://innovationagenda.asia/chro/grooming-for-greater-things-emplacing-your-best-talent-for-succession?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=grooming_for_greater_things" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+													
+												</a>
+											</td>
+											<td align="left" width="50%" class="stack-column">
+												<a href="https://innovationagenda.asia/ceo/the-utilities-2019-imperative-its-now-or-never?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=utilities_2019" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #000000; text-decoration: none;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td style="padding: 20px 0 0 10px ;background-color: #ffffff;" class="pad-0">
+																<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+																	<tr>
+																		<td style="padding: 0 ; background-color: #000000;">
+																			<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/hottest-6.jpg" width="100%" height="132" alt="The Utilities 2019 Imperative: It’s Now or Never" border="0" style="width: 100%; height: auto; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class="fluid g-img">
+																				
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 15px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px;background-color: #000000; height: 110px;">
+																			<p style="margin: 0;font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; font-weight: bold; line-height: 20px; color: #f0ab00;">The Utilities 2019 Imperative: It’s Now or Never</p>
+																			<p style="margin: 5px 0 0 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 20px;color: #ffffff;">Beyond providing power, energy players should start looking at how...</p>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 10px 15px 15px; background-color: #000000;">
+																			<a href="https://innovationagenda.asia/ceo/the-utilities-2019-imperative-its-now-or-never?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=utilities_2019" target="_blank">
+																				<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/cta.jpg" width="97" height="30" alt="Do CFOs Make Good CEOs?" border="0" style="width: 97px; height: 30px; background: #000000; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;" class=" g-img">
+																			</a>
+
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</a>
+											</td>
+										</tr>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- Mid Line : END -->
+		
+		<!-- Mid Line : BEGIN -->
+		<tr>
+			<td style="padding: 0;" align="left" valign="top" style="background-color: #f5f9fa;" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f9fa;">
+					<tr>
+						<td align="right" class="mid-line" valign="top" style="padding: 0; background-color: #f5f9fa;">
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td align="left" class="mid-line" style="padding: 30px 30px 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-align: left; font-size: 30px; line-height: 34px; font-weight: bold; color: #f0ab00;">
+										<p style="margin: 0 0 0 0; padding: 0;">
+											Skyrocket Your Business
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 25px 30px 10px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #1f1f1f;text-align: left;" class="sm-pad text-td" align="left">
+										<table cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td align="left" valign="middle" width="28%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0;background-color: #f5f9fa;" class="pad-0">
+																<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/sky-3.jpg" width="130" height="130" alt="Do CFOs Make Good CEOs?" border="0" style="max-width: 130px; height: auto; background: #f5f9fa; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif; display: block;" class="fluid g-img">
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td align="left" valign="middle" width="72%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0 ;background-color: #f5f9fa;">
+																<p style="margin: 10px 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 20px;color: #2f2f2f;">What’s the engine of best-run businesses? Real-time insights. Discover how you can move your record-to-report process at lightning speed with <a href="http://innovationagenda.asia/SAC/?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=sap_analytics_cloud" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #f5f9fa; text-decoration: underline;color: #008fd2;">SAP Analytics Cloud</a>. </p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px 30px 10px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #1f1f1f;text-align: left;" class="sm-pad text-td" align="left">
+										<table cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td align="left" valign="middle" width="28%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0;background-color: #f5f9fa;" class="pad-0">
+																<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/sky-2.jpg" width="130" height="130" alt="SAP Ariba Snap" border="0" style="max-width: 130px; height: auto; background: #f5f9fa; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif; display: block;" class="fluid g-img">
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td align="left" valign="middle" width="72%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0 ;background-color: #f5f9fa;">
+																<p style="margin: 10px 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 20px;color: #2f2f2f;">Grow your business in a snap! Find out how you can drive profitable growth by overcoming complex procurement processes with <a href="https://innovationagenda.asia/aribasnap?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=sap_ariba" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #f5f9fa; text-decoration: underline;color: #008fd2;">SAP Ariba Snap</a>.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px 30px 30px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #1f1f1f;text-align: left;" class="sm-pad text-td" align="left">
+										<table cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td align="left" valign="middle" width="28%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0;background-color: #f5f9fa;" >
+																<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/sky-1.jpg" width="130" height="130" alt="data management solutions" border="0" style="max-width: 130px; height: auto; background: #f5f9fa; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif; display: block;" class="fluid g-img">
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td align="left" valign="middle" width="72%" class="stack-column">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+														<tr>
+															<td valign="middle" style="padding: 0 ;background-color: #f5f9fa;">
+																<p style="margin: 10px 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 20px;color: #2f2f2f;">Your business’s most precious asset is data—and you must manage it well to win in the digital economy. Get started with our <a href="https://innovationagenda.asia/ddm?utm_source=newsletter&utm_medium=email&utm_campaign=innovation_agenda&utm_content=data_sprawl" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #f5f9fa; text-decoration: underline;color: #008fd2;">data management solutions</a>.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- Mid Line : END -->
+
+		<!-- performance : BEGIN -->
+		<tr>
+			<td style="padding: 0;" align="left" valign="top" style="background-color: #ffffff;" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;">
+					<tr>
+						<td align="left" class="mid-line" style="padding: 30px 30px 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-align: left; font-size: 15px; line-height: 20px;  color: #2f2f2f;">
+							<p style="margin: 0 0 0 0; padding: 0;">
+								<b>Want to be an Innovation Agenda contributor?</b> Yes, you can be one today! Simply drop us a message at <a href="mailto:lia.ragina@sap.com" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #ffffff; text-decoration: underline;color: #008fd2;">lia.ragina@sap.com</a> and we’ll get back to you with the full details. 
+							</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- performance : END -->
+		<!-- signature : BEGIN -->
+		<tr>
+			<td style="padding: 0;" align="left" valign="top" style="background-color: #ffffff;" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;">
+					<tr>
+						<td align="left" class="mid-line" style="padding: 30px 30px 45px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-align: left; font-size: 15px; line-height: 20px; font-weight: bold;  color: #2f2f2f;">
+							<p style="margin: 0 0 0 0; padding: 0;">
+								Best regards,
+							</p>
+							<p style="margin: 0 0 0 0; padding: 0;">
+								SAP Southeast Asia Team 
+							</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- signature : END -->
+		<!-- signature : BEGIN -->
+		<tr>
+			<td style="padding: 0;" align="left" valign="top" style="background-color: #ffffff;" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;">
+					<tr>
+						<td align="left" class="mid-line" style="padding: 0 30px 20px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;text-align: left; font-size: 15px; line-height: 20px;color: #2f2f2f;">
+							<p style="margin: 0 0 0 0; padding: 0;">
+								Click <a href="http://hs-2872128.s.hubspotemail.net/hs/manage-preferences/unsubscribe-simple?via_redirect=true" target="_blank" style="font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 15px; line-height: 24px; background-color: #f5f9fa; text-decoration: underline;color: #008fd2;">here</a> to unsubscribe
+							</p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<!-- signature : END -->
+		
+		<!-- Footer : BEGIN -->
+		<tr>
+			<td style="width: 100%; background-color: #000000; padding: 0; font-family: 'Helvetica-Light', sans-serif; font-size: 12px; line-height: 18px; font-weight: 100;" align="center" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td width="100%" style="padding: 25px 28px 0;">
+							<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+								<tr>
+									<td align="left" width="130">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#000000">
+											<tr>
+												<td width="35" align="left" class="button-td button-td-primary" style="padding: 0 10px 0 0">
+													<a class="button-a button-a-primary" href="https://www.facebook.com/SAPSoutheastAsia" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+														<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/fb.jpg" width="35" height="35" alt="facebook" border="0" style="width: 35px; max-width: 35px; height: 35px; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333; display: block;" class="g-img">
+													</a>
+												</td>
+												<td width="35" align="center" class="button-td button-td-primary" style="padding: 0 10px">
+													<a class="button-a button-a-primary" href="https://twitter.com/SAP_APJ" style="background: #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+														<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/twitter.jpg" width="35" height="35" alt="twitter" border="0" style="width: 35px; max-width: 35px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;display: block;" class="g-img">
+													</a>
+												</td>
+												<td width="35" align="center" class="button-td button-td-primary" style="padding: 0 0 0 10px;">
+													<a class="button-a button-a-primary" href="https://www.linkedin.com/company/sap/" style="background: #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+														<img src="https://edm-demos.constructdigital.net/sap-sea/ticket-18714/img/linkin.jpg" width="35" height="35" alt="linkin" border="0" style="width: 35px; max-width: 35px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;display: block;" class="g-img">
+													</a>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td align="left" width="400" class="stack-column-cus">
+										
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td width="100%" style="padding: 0 30px 20px;" align="center">
+							<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+								<tr>
+									<td align="left" width="50%" style="padding: 20px 0 0" class="stack-column">
+										<p style="margin: 0; padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 12px; line-height: 15px; color: #ffffff;">Visit SAP Finance for more information
+										</p>
+									</td>
+									<td align="right" width="50%" style="padding: 20px 0 0; " class="stack-column copy-right-text">
+										<p style="margin: 0; padding: 0; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 12px; line-height: 15px; color: #ffffff;">&copy; All Rights Reserved
+										</p>
+										
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 100%; background-color: #000000; padding: 0; font-family: 'Helvetica-Light', sans-serif; font-size: 12px; line-height: 18px; font-weight: 100;" align="center" class="stack-column">
+				<table role="presentation" cellspacing="0" cellpadding="0" border="0">
+					
+				</table>
+			</td>
+		</tr>
+		<!-- Footer : END -->
+	</table>
+	<!-- Email Body : END -->
+
+
+	<!--[if mso | IE]>
+	</td>
+	</tr>
+	</table>
+	<![endif]-->
+</center>
+</body>
+</html>

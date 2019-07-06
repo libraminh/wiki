@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+	<meta charset="utf-8">
+	<!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width">
+	<!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">
+	<!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<!--
+	PHPStorm/Webstorm template var:
+	 Email Background color (default "#222222"): #ffffff
+	 Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+	 Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+	 Font-size (default "15px"): 14px
+	 Line-height (default "20px"): 16px
+	 Section padding (default "20px"): 36px
+	 Half padding (default "10px" = Section padding / 2): 18px
+	 Section Background Color (default "#ffffff"): #ffffff
+	 Component Margin bottom (default "10px"): 35px
+
+	 Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+	-->
+
+	<title>ReMarketing</title>
+	<!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+	<style>
+		* {
+			font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+	<!--<![endif]-->
+
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+		/* What it does: Remove spaces around the email design added by some email clients. */
+
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+
+		*[x-apple-data-detectors],
+		/* iOS */
+
+		.unstyle-auto-detected-links *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+
+		img.g-img+div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		.no-u-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+		/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+
+		@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+			.email-container {
+				min-width: 320px !important;
+			}
+		}
+
+		/* iPhone 6, 6S, 7, 8, and X */
+
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+
+		/* iPhone 6+, 7+, and 8+ */
+
+		@media only screen and (min-device-width: 414px) {
+			.email-container {
+				min-width: 414px !important;
+			}
+		}
+	</style>
+	<!-- CSS Reset : END -->
+	<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+	<!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 35px !important;
+		}
+	</style>
+	<![endif]-->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+		/* What it does: Hover styles for buttons */
+
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+
+		.button-td-primary:hover,
+		.button-a-primary:hover {
+			background: #003876 !important;
+			border-color: #003876 !important;
+		}
+
+		/* Media Queries */
+
+		@media screen and (max-width: 600px) {
+
+			.email-container {
+				width: 100% !important;
+				margin: auto !important;
+			}
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				/*font-size: 17px !important;*/
+			}
+		}
+	</style>
+	<!-- Progressive Enhancements : END -->
+
+
+	<!-- Custom responsive enhancements : BEGIN -->
+	<style>
+		/* iPhone 6->X Plus */
+
+		@media only screen and (max-device-width: 414px) {
+			.sm-img-full {
+				width: 100% !important;
+			}
+			.sm-left {
+				text-align: left !important;
+			}
+			.sm-pad-left {
+				padding-left: 23px !important;
+			}
+			.sm-pad-right {
+				padding-left: 23px !important;
+			}
+			.sm-pad {
+				padding-left: 23px !important;
+				padding-right: 23px !important;
+			}
+			.sm-center {
+				text-align: center !important;
+			}
+			.p-img {
+				height: auto !important;
+			}
+			.title {
+				font-size: 14.5px;
+				line-height: 18px;
+			}
+
+			/* Not re-usable */
+			.brand-story {
+				padding-top: 22px !important;
+				padding-bottom: 22px !important;
+			}
+			.finance-right-col {
+				padding-top: 42px !important;
+				padding-bottom: 42px !important;
+			}
+
+			.finance-right-col p {
+				line-height: 22px !important;
+			}
+
+			.copyrights {
+				padding-top: 13px !important;
+				padding-bottom: 13px !important;
+			}
+			.copyrights p {
+				font-size: 7px !important;
+				line-height: 9px !important;
+			}
+		}
+	</style>
+	<!-- Custom responsive enhancements : END -->
+
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+<!--
+	The email background color (#ffffff) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+
+<body width="100%" style="margin: 0; mso-line-height-rule: exactly; background-color: #ffffff;">
+	<center style="width: 100%; background-color: #ffffff; text-align: left;">
+		<!--[if mso | IE]>
+	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+		<tr>
+			<td>
+	<![endif]-->
+
+		<!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+		<!-- Preview Text Spacing Hack : BEGIN -->
+		<div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ;">
+			&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+		</div>
+		<!-- Preview Text Spacing Hack : END -->
+
+		<!-- Email Body : BEGIN -->
+		<table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto;"
+		 class="email-container">
+
+			<!-- Hero Image, Flush : BEGIN -->
+			<tr>
+				<td style="background-color: #ffffff;">
+					<a href="https://www.nuss.org.sg/" target="_blank">
+						<img src="http://edm-demos.constructdigital.net/nuss/remarketing/img/marketing-masthead_03.jpg" width="600" height="315"
+						 alt="You're almose there! We'll call you soon." border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 15px; color: #151515; margin: auto;"
+						 class="g-img">
+					</a>
+				</td>
+			</tr>
+			<!-- Hero Image, Flush : END -->
+
+			<!-- 1 Column Text : BEGIN -->
+			<tr>
+				<td style="background-color: #ffffff;">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td style="padding: 50px 100px 10px 100px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #151515;"
+							 class="sm-pad text-td">
+								<p style="margin: 0 0 26px;">Hello *|NAME|*,</p>
+								<p style="margin: 0 0 20px;; padding: 0;">The past couple of months have been really exciting for NUSS as we soft opened the new Mandalay Guild House to members.</p>
+								<p style="margin: 0;; padding: 0;">This is your last chance to join NUSS at reduced entrance fees! Sign up today and gain access to all the facilities and F&B outlets at all three NUSS Guild Houses.
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- 1 Column Text : END -->
+
+			<!-- Fresh Graduates Image, Flush : BEGIN -->
+			<tr>
+				<td class="sm-pad" style="background-color: #ffffff; padding: 0px 100px 0px 100px;">
+					<p style=" font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #151515; margin: 0 0 5px 0; padding: 0;">
+						<a href="https://www.nuss.org.sg/recruitment-2018/fresh-graduates/?utm_source=email&utm_medium=last_year_leads&utm_campaign=RTM_YG" style="color:#003876;display: inline-block; font-weight: bold; text-decoration: none;">Join Us</a> at $1,500. (For those who have graduated <b>within</b> 6 years from your first degree) </p>
+
+					<a href="https://www.nuss.org.sg/recruitment-2018/fresh-graduates/?utm_source=email&utm_medium=last_year_leads&utm_campaign=RTM_YG" target="_blank">
+						<img src="http://edm-demos.constructdigital.net/nuss/remarketing/img/remarketing_07.jpg" width="395" height="90" alt="You’re almost there! We’ll call you soon."
+						 border="0" style="width: 100%; max-width: 395px; height: auto; background: #dddddd; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 15px; color: #151515; margin: auto;"
+						 class="g-img">
+					</a>
+				</td>
+			</tr>
+			<!-- Fresh Graduates Image, Flush : END -->
+
+			<!-- Mid Career Image, Flush : BEGIN -->
+			<tr>
+				<td class="sm-pad" style="background-color: #ffffff; padding: 10px 100px 30px 100px;">
+					<p style=" font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #151515; margin: 0 0 5px 0; padding: 0;">
+						<a href="https://www.nuss.org.sg/recruitment-2018/mid-career/?utm_source=email&utm_medium=last_year_leads&utm_campaign=RTM_MC" style="color:#003876; font-weight: bold; text-decoration: none;">Apply Now</a> at $2,800. (For those who have graduated <b>after</b> 6 years from your first degree)</p>
+
+					<a href="https://www.nuss.org.sg/recruitment-2018/mid-career/?utm_source=email&utm_medium=last_year_leads&utm_campaign=RTM_MC" target="_blank">
+						<img src="http://edm-demos.constructdigital.net/nuss/remarketing/img/remarketing_10.jpg" width="395" height="90" alt="You’re almost there! We’ll call you soon."
+						 border="0" style="width: 100%; max-width: 395px; height: auto; background: #dddddd; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 14px; line-height: 15px; color: #151515; margin: auto;"
+						 class="g-img">
+					</a>
+				</td>
+			</tr>
+			<!-- Mid Career Image, Flush : END -->
+
+			<!-- 1 Column Text : BEGIN -->
+			<tr>
+				<td style="background-color: #ffffff;">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td style="padding: 0px 100px 60px 100px; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 16px; line-height: 24px; color: #151515;"
+							 class="sm-pad text-td">
+								<p style="margin: 0 0 10px; font-weight: bold;">With a membership at NUSS, you can:</p>
+								<ul style="padding: 0 0 0 15px; margin: 0 0 25px 0;">
+									<li style="margin-bottom: 10px;">Enjoy our modern facilities such as a 50m lap pool and 5800sq. ft. fully equipped fitness centre at Kent Ridge Guild House.
+									</li>
+									<li style="margin-bottom: 10px;">Attend a whole range of programmes, from networking sessions to interest group activities.
+									</li>
+									<li style="margin-bottom: 10px;">Dine at our exclusive restaurants and chill-out bars.
+									</li>
+									<li style="margin-bottom: 10px;">Network with fellow alumni and establish meaningful relationships.
+									</li>
+									<li>Enjoy these benefits and more with your friends and family!
+									</li>
+								</ul>
+								<a href="https://www.nuss.org.sg/recruitment-2018/mid-career/?utm_source=email&utm_medium=last_year_leads&utm_campaign=RTM_MC" target="_blank"> <img src="http://edm-demos.constructdigital.net/nuss/remarketing/img/join-us.png" width="168" height="42" alt="Join Us" border="0"> </a>
+								<p style="margin: 0 0 20px;; padding: 0;">Apply for your lifetime membership and be part of NUSS
+									<a href="http://www.nuss.org.sg/forms/road-to-mandalay-rtm-membership.html" style="color:#003876; font-weight: bold; text-decoration: none;">here</a>! We hope to see you around soon. </p>
+								<p style="margin: 0;; padding: 0;">With warm regards,
+									<br /> Team NUSS</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- 1 Column Text : END -->
+
+			<!-- Footer : BEGIN -->
+			<tr>
+				<td style="width: 100%; background-color: #003876; padding: 24px 0 12px; font-family: 'Helvetica-Light', sans-serif; font-size: 12px; line-height: 18px; font-weight: 100;"
+				 align="center">
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td class="button-td button-td-primary" style="padding: 0 10px;">
+								<a class="button-a button-a-primary" href="http://www.nuss.org.sg/" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+									<img src="http://edm-demos.constructdigital.net/nuss/young-graduate/img/web.png" width="35" height="35" alt="Web" border="0"
+									 style="width: 100%; max-width: 40px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;"
+									 class="g-img">
+								</a>
+							</td>
+							<td class="button-td button-td-primary" style="padding: 0 25px;">
+								<a class="button-a button-a-primary" href="https://www.facebook.com/NUSSociety" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+									<img src="http://edm-demos.constructdigital.net/nuss/young-graduate/img/fb.png" width="35" height="35" alt="Facebook" border="0"
+									 style="width: 100%; max-width: 40px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;"
+									 class="g-img">
+								</a>
+							</td>
+							<td class="button-td button-td-primary" style="padding: 0 10px;">
+								<a class="button-a button-a-primary" href="https://www.instagram.com/nussociety/" style="background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; color: #ffffff; display: block;">
+									<img src="http://edm-demos.constructdigital.net/nuss/young-graduate/img/ig.png" width="35" height="35" alt="Instagram" border="0"
+									 style="width: 100%; max-width: 40px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;"
+									 class="g-img">
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 100%; background-color: #003876; color: #ffffff; font-family: 'Helvetica Bold', HelveticaBold, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 13px; line-height: 15px; padding-bottom: 10px; font-weight: bold;"
+				 align="center">
+					The National University of Singapore Society (NUSS)
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 100%; background-color: #003876; color: #ffffff; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 11px; line-height: 13px;"
+				 align="center">
+					Kent Ridge Guild House, 9 Kent Ridge Drive Singapore 119241
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 100%; background-color: #003876; color: #ffffff; font-family: 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif ; font-size: 11px; line-height: 13px; padding-bottom: 30px"
+				 align="center">
+					<strong style="display: inline-block; padding-top: 2px;">Phone</strong>: 6777 6060
+				</td>
+			</tr>
+			<!-- Footer : END -->
+
+		</table>
+		<!-- Email Body : END -->
+
+
+		<!--[if mso | IE]>
+	</td>
+	</tr>
+	</table>
+	<![endif]-->
+	</center>
+</body>
+
+</html>
