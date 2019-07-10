@@ -18,7 +18,7 @@
   ],
   "author": "Minh Le",
   "license": "MIT",
-  "homepage": "https://github.com/libraminh/wiki",
+  "homepage": "https://wiki.minhle.dev",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
