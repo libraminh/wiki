@@ -23,6 +23,7 @@ module.exports = {
           '/wiki/website/vuepress/',
           '/wiki/website/webpack/',
           '/wiki/website/eslint/',
+          '/wiki/website/github/',
           '/wiki/website/yeoman/',
           '/wiki/website/node-js-generator/',
         ]
