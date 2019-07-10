@@ -38,3 +38,9 @@ module.exports = {
   exclude: /node_modules/
 }
 ```
+
+## Disable
+
+```
+/* eslint-disable */
+```

@@ -4,6 +4,7 @@ module.exports = {
   title: 'minhle',
   description: 'Wikipedia',
   base: '/',
+  dest: 'docs',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },

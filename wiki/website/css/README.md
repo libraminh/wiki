@@ -8,6 +8,8 @@
   overflow: hidden; 
   white-space: nowrap;
 }
+
+/* Lorem ipsum... */
 ```
 
 ## Reset css for button, input submit Safari Iphone

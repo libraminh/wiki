@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta charset="utf-8">
+    <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width">
+    <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">
+    <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <!--
+    PHPStorm/Webstorm template var:
+    Email Background color (default "#222222"): #ffffff
+    Content width (default "600"): 600 (** NUMBER ONLY, no unit specified **)
+    Font-family (default "sans-serif"): 'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif  (can put multiple font, ex: "arial, sans-serif")
+    Font-size (default "15px"): 14px
+    Line-height (default "20px"): 16px
+    Section padding (default "20px"): 36px
+    Half padding (default "10px" = Section padding / 2): 18px
+    Section Background Color (default "#ffffff"): #ffffff
+    Component Margin bottom (default "10px"): 35px
+    Cooked from: https://github.com/TedGoas/Cerberus/blob/3.0.3/cerberus-responsive.html
+    -->
+    <title>Engie EDM</title>
+    <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+    <style>
+      * {
+      font-family:'Helvetica Regular',HelveticaRegular,Helvetica,Arial,'Lucida Grande',sans-serif !important;
+      }
+    </style>
+    <![endif]-->
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css"> -->
+    <!--<![endif]-->
+    <!-- Web Font / @font-face : END -->
+    <!-- CSS Reset : BEGIN -->
+    <!-- CSS Reset : END -->
+    <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+    <!--[if mso]>
+    <style>
+      ul,ol {
+      margin:0 !important;
+      }
+      li {
+      margin-left:30px !important;
+      }
+      li.list-item-first {
+      margin-top:0 !important;
+      }
+      li.list-item-last {
+      margin-bottom:35px !important;
+      }
+    </style>
+    <![endif]-->
+    <!-- Progressive Enhancements : BEGIN -->
+    <!-- Progressive Enhancements : END -->
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG />
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    
+  <style type="text/css">
+		html,body{
+			margin:0 auto !important;
+			padding:0 !important;
+			height:100% !important;
+			width:100% !important;
+		}
+		*{
+			-ms-text-size-adjust:100%;
+			-webkit-text-size-adjust:100%;
+		}
+		div[style*=margin: 16px 0]{
+			margin:0 !important;
+		}
+		table,td{
+			mso-table-lspace:0 !important;
+			mso-table-rspace:0 !important;
+		}
+		table{
+			border-spacing:0 !important;
+			border-collapse:collapse !important;
+			table-layout:fixed !important;
+			margin:0 auto !important;
+		}
+		table table table{
+			table-layout:auto;
+		}
+		img{
+			-ms-interpolation-mode:bicubic;
+		}
+		[x-apple-data-detectors],.unstyle-auto-detected-links *,.aBn{
+			border-bottom:0 !important;
+			cursor:default !important;
+			color:inherit !important;
+			text-decoration:none !important;
+			font-size:inherit !important;
+			font-family:inherit !important;
+			font-weight:inherit !important;
+			line-height:inherit !important;
+		}
+		.a6S{
+			display:none !important;
+			opacity:.01 !important;
+		}
+		img.g-img+div{
+			display:none !important;
+		}
+		.button-link{
+			text-decoration:none !important;
+		}
+		.no-u-link{
+			text-decoration:none !important;
+		}
+	@media only screen and (min-device-width: 320px) and (max-device-width: 374px){
+		.email-container{
+			min-width:320px !important;
+		}
+
+}	@media only screen and (min-device-width: 375px) and (max-device-width: 413px){
+		.email-container{
+			min-width:375px !important;
+		}
+
+}	@media only screen and (min-device-width: 414px){
+		.email-container{
+			min-width:414px !important;
+		}
+
+}		html,body{
+			margin:0 auto !important;
+			padding:0 !important;
+			height:100% !important;
+			width:100% !important;
+		}
+		*{
+			-ms-text-size-adjust:100%;
+			-webkit-text-size-adjust:100%;
+		}
+		div[style*=margin: 16px 0]{
+			margin:c0 !important;
+		}
+		table,td{
+			mso-table-lspace:0 !important;
+			mso-table-rspace:0 !important;
+		}
+		table{
+			border-spacing:0 !important;
+			border-collapse:collapse !important;
+			table-layout:fixed !important;
+			margin:0 auto !important;
+		}
+		table table table{
+			table-layout:auto;
+		}
+		img{
+			-ms-interpolation-mode:bicubic;
+		}
+		[x-apple-data-detectors],.unstyle-auto-detected-links *,.aBn{
+			border-bottom:0 !important;
+			cursor:default !important;
+			color:inherit !important;
+			text-decoration:none !important;
+			font-size:inherit !important;
+			font-family:inherit !important;
+			font-weight:inherit !important;
+			line-height:inherit !important;
+		}
+		.a6S{
+			display:none !important;
+			opacity:.01 !important;
+		}
+		img.g-img+div{
+			display:none !important;
+		}
+		.button-link{
+			text-decoration:none !important;
+		}
+		.no-u-link{
+			text-decoration:none !important;
+		}
+	@media only screen and (min-device-width: 320px) and (max-device-width: 374px){
+		.email-container{
+			min-width:320px !important;
+		}
+
+}	@media only screen and (min-device-width: 375px) and (max-device-width: 413px){
+		.email-container{
+			min-width:375px !important;
+		}
+
+}	@media only screen and (min-device-width: 414px){
+		.email-container{
+			min-width:414px !important;
+		}
+
+}		.button-td,.button-a{
+			transition:all 100ms ease-in;
+		}
+		.button-td-primary:hover,.button-a-primary:hover{
+			background:#151515 !important;
+			border-color:#151515 !important;
+		}
+	@media screen and (max-width: 600px){
+		.email-container{
+			width:100% !important;
+			margin:auto !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.fluid{
+			max-width:100% !important;
+			height:auto !important;
+			margin-left:auto !important;
+			margin-right:auto !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.stack-column,.stack-column-center{
+			display:block !important;
+			width:100% !important;
+			max-width:100% !important;
+			direction:ltr !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.stack-column-center{
+			text-align:center !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.center-on-narrow{
+			text-align:center !important;
+			display:block !important;
+			margin-left:auto !important;
+			margin-right:auto !important;
+			float:none !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		table.center-on-narrow{
+			display:inline-block !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.w-20{
+			width:28% !important;
+			max-width:28% !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.w-80{
+			width:72% !important;
+			max-width:72% !important;
+		}
+
+}	@media screen and (max-width: 600px){
+		.sm-pad{
+			padding-left:23px !important;
+			padding-right:23px !important;
+		}
+
+}</style></head>
+  <body width="100%" bgcolor="" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width:100%;background:rgb(255,255,255);text-align:left;">
+      <!-- Visually Hidden Preheader Text : BEGIN -->
+      <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family:sans-serif;">
+        STE EDM
+      </div>
+      <!-- Visually Hidden Preheader Text : END -->
+      <!--
+      Set the email width. Defined in two places:
+      1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+      2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+      Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+      -->
+      
+      <!--[if mso]>
+      <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+        <tr>
+          <td>
+            <![endif]-->
+      <!-- Email Header : BEGIN -->
+      <table cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="width:600px;background-color:#ffffff;" class="email-container">
+        <tr>
+          <td style="padding:20px 0;text-align:center;"></td>
+        </tr>
+      </table>
+      <!-- Email Header : END -->
+      <!-- Email Body : BEGIN -->
+      <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin:0 auto;" class="email-container">
+        <!-- Logo, Flush : BEGIN -->
+        <tr>
+          <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+          <td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important;background-color:#ffffff;">
+            <!--[if mso]>
+            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+              <tr>
+                <td align="center" valign="top" width="100%" style="width:100%;">
+                  <![endif]-->
+            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+              <tr>
+                <td bgcolor="#ffffff" style="background-color:#ffffff;" align="center" width="100%">
+                  <img src="images/template-3/masthead.jpg" width="600" height="228" alt="STE EDM" border="0" class="fluid g-img" style="width: 600px; height: 228px;">
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+          </td>
+        </tr>
+        <!-- Logo, Flush : END -->
+        <!-- TEXT AREA BEGIN -->
+        <tr>
+          <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+          <td class="stack-column" dir="ltr" bgcolor="#ffffff" valign="middle" align="center" style="background-position:center !important;background-size:cover !important;background-color:#ffffff;">
+            <!--[if mso]>
+            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+              <tr>
+                <td align="center" valign="top" width="100%" style="width:100%;">
+                  <![endif]-->
+            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#ffffff;">
+              <tr>
+                <td width="100%" valign="middle" class="sm-pad" style="font-family:'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;font-size:14px;line-height:20px;color:#000000;text-align:left;max-width:600px;padding:35px 65px 30px;background-color:#ffffff;">
+                  <p style="margin:0 0 25px 0;line-height:20px;">
+                    Good day,
+                  </p>
+                  <p style="margin:0 0 25px 0;line-height:20px;">
+                    Thank you for your engagement and interest to achieve a future ready data centre.
+                  </p>
+                  <p style="margin:0 0 25px 0;line-height:20px;">
+                    Please click <a href="*|PDFLINK|*" target="_blank" style="font-family:Helvetica, sans-serif;font-size:14px;line-height:16px;color:#01a3c8;text-decoration:none;">here</a> to obtain the results of your Data Centre Future Readiness Assessment. In your report, you will find learnings and insights to get ahead of the curve by driving innovation that enables an optimal performance at your data centres.
+                  </p>
+                  <p style="margin:0 0 0 0;line-height:20px;">
+                    Explore how you can leverage on ENGIE’s data centre experts and advanced analytics with machine-learning technologies to improve availability, optimise performance, reduce costs and maximise energy efficiency and through Avril Digital Support Services.
+                  </p>
+                  
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+          </td>
+        </tr>
+        <!-- TEXT AREA END -->
+        <!-- TEXT AREA BEGIN -->
+        <tr>
+          <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+          <td class="stack-column" dir="ltr" bgcolor="#f5f9fb" valign="middle" align="center" style="background-position:center !important;background-size:cover !important;background-color:#f5f9fb;border-top:2px solid #dae5ea;">
+            <!--[if mso]>
+            <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%" style="width:100%;">
+              <tr>
+                <td align="center" valign="top" width="100%" style="width:100%;">
+                  <![endif]-->
+            <table bgcolor="#f5f9fb" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;background-color:#f5f9fb;">
+              <tr>
+                <td width="100%" valign="middle" class="sm-pad" style="font-family:'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;font-size:14px;line-height:20px;color:#000000;text-align:left;max-width:600px;padding:35px 65px;background-color:#f5f9fb;">
+                  
+                  <p style="margin:0 0 25px 0;line-height:20px;">
+                    Visit us at <a href="https://avrildigital.com" target="_blank" style="font-family:Helvetica, sans-serif;font-size:14px;line-height:16px;color:#01a3c8;text-decoration:none;">avrildigital.com</a> or contact an ENGIE representative to get supported by smart analytic-driven data centre services.
+                  </p>
+                  <p style="margin:0 0 0 0;line-height:20px;">
+                    Our data centre experts take the guesswork out of critical operational decisions, So, you can focus on strategic projects that support your business goals with peace of mind.
+                  </p>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td width="100%" align="center" valign="middle" style="font-family:'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;font-size:14px;color:#000000;text-align:center;max-width:600px;padding:0 35px 30px;background-color:#f5f9fb;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="background-color:#f5f9fb;text-align:center;" width="230" align="center">
+                    <tr>
+                      <td align="center" width="230" height="50" class="button-td button-td-primary" style="padding:0;background-color:#f5f9fb;text-align:center;">
+                        <a href="https://engie.constructdigital.net/contact-us/" target="_blank" style="text-decoration:none;background-color:#f5f9fb;width:230px;height:50px;display:block;text-align:center;">
+                          <img src="images/template-3/cta-submit.jpg" width="230" height="50" alt="register" border="0" class="g-img" style="margin: auto; width: 230px; height: auto;background-color: #f5f9fb;"></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
+            </td>
+          </tr>
+          <!-- TEXT AREA END -->
+          <!-- Footer : BEGIN -->
+          <tr>
+            <td style="width:100%;background-color:#101946;padding:30px 0 20px;font-family:'Helvetica-Light', sans-serif;font-size:12px;line-height:18px;font-weight:100;" align="center">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="button-td button-td-primary" style="padding:0 10px;">
+                    <a class="button-a button-a-primary" href="https://sg.linkedin.com/company/engie" style="background:transparent;font-family:sans-serif;font-size:15px;line-height:15px;text-decoration:none;color:#ffffff;display:block;">
+                      <img src="images/template-3/social-in.png" width="36" height="36" alt="in" border="0" style="width: 100%; max-width: 36px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;" class="g-img"></a>
+                    </td>
+                    <td class="button-td button-td-primary" style="padding:0 25px;">
+                      <a class="button-a button-a-primary" href="https://www.facebook.com/engiesingapore/" style="background:transparent;font-family:sans-serif;font-size:15px;line-height:15px;text-decoration:none;color:#ffffff;display:block;">
+                        <img src="images/template-3/social-face.png" width="36" height="36" alt="Facebook" border="0" style="width: 100%; max-width: 36px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;" class="g-img"></a>
+                      </td>
+                      <td class="button-td button-td-primary" style="padding:0 10px;">
+                        <a class="button-a button-a-primary" href="https://www.youtube.com/channel/UCuQHD9MgnRILjwdQaWZrBxA" style="background:transparent;font-family:sans-serif;font-size:15px;line-height:15px;text-decoration:none;color:#ffffff;display:block;">
+                          <img src="images/template-3/social-insta.png" width="36" height="36" alt="YouTube" border="0" style="width: 100%; max-width: 36px; height: auto; background: transparent; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #333333;" class="g-img"></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width:100%;background-color:#101946;padding:0 10px;color:#ffffff;font-family:'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;font-size:12px;line-height:15px;" align="center">
+                    <p style="margin:0 0 0 0;color:#ffffff;">
+                      #05-04 Golden Agri Plaza, 108 Pasir Panjang Rd, Singapore 118535
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width:100%;background-color:#101946;color:#ffffff;font-family:'Helvetica Regular', HelveticaRegular, Helvetica, Arial, 'Lucida Grande', sans-serif;font-size:12px;line-height:15px;padding:30px 10px;" align="center">
+                    <img src="images/template-3/footer-bar.png" width="540" height="7" alt="register" border="0" class="g-img fluid" style="margin: auto; width: 540px; height: auto;">
+                  </td>
+                </tr>
+                <!-- Footer : END -->
+              </table>
+              <!-- Email Body : END -->
+              <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
+              <!-- Email Footer : BEGIN -->
+              <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width:600px;">
+                <tr>
+                  <td style="padding:20px 0;text-align:center;"></td>
+                </tr>
+              </table>
+              <!-- Email Footer : END -->
+            </center>
+          </body>
+</html>
