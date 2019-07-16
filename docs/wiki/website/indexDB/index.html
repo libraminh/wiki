@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>indexDB | minhle</title>
+    <meta name="description" content="Wikipedia">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.741c6f71.css" as="style"><link rel="preload" href="/assets/js/app.a6e02778.js" as="script"><link rel="preload" href="/assets/js/2.e5dfde26.js" as="script"><link rel="preload" href="/assets/js/17.6c17c7fa.js" as="script"><link rel="prefetch" href="/assets/js/10.b228c382.js"><link rel="prefetch" href="/assets/js/11.4703221a.js"><link rel="prefetch" href="/assets/js/12.affe3997.js"><link rel="prefetch" href="/assets/js/13.32647dc8.js"><link rel="prefetch" href="/assets/js/14.45a1bae2.js"><link rel="prefetch" href="/assets/js/15.cafb6474.js"><link rel="prefetch" href="/assets/js/16.89af0cdb.js"><link rel="prefetch" href="/assets/js/18.cee996ba.js"><link rel="prefetch" href="/assets/js/19.43998358.js"><link rel="prefetch" href="/assets/js/20.e39cd3f9.js"><link rel="prefetch" href="/assets/js/21.0e2c0862.js"><link rel="prefetch" href="/assets/js/22.5f2b1ad0.js"><link rel="prefetch" href="/assets/js/23.233aa3f6.js"><link rel="prefetch" href="/assets/js/24.364196f3.js"><link rel="prefetch" href="/assets/js/3.8e988227.js"><link rel="prefetch" href="/assets/js/4.dc367344.js"><link rel="prefetch" href="/assets/js/5.0735062a.js"><link rel="prefetch" href="/assets/js/6.f4dce87d.js"><link rel="prefetch" href="/assets/js/7.2fb93e87.js"><link rel="prefetch" href="/assets/js/8.0c079d59.js"><link rel="prefetch" href="/assets/js/9.b462be7f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.741c6f71.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">minhle</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/wiki/" class="nav-link router-link-active">Wiki</a></div><div class="nav-item"><a href="/edms/" class="nav-link">EDMs</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/wiki/" class="nav-link router-link-active">Wiki</a></div><div class="nav-item"><a href="/edms/" class="nav-link">EDMs</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Website</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/website/git/" class="sidebar-link">GIT</a></li><li><a href="/wiki/website/css/" class="sidebar-link">CSS</a></li><li><a href="/wiki/website/javascript/" class="sidebar-link">JS</a></li><li><a href="/wiki/website/ie11/" class="sidebar-link">IE11</a></li><li><a href="/wiki/website/indexDB/" class="active sidebar-link">indexDB</a></li><li><a href="/wiki/website/vue/" class="sidebar-link">Vue</a></li><li><a href="/wiki/website/vuepress/" class="sidebar-link">VuePress</a></li><li><a href="/wiki/website/webpack/" class="sidebar-link">Webpack</a></li><li><a href="/wiki/website/eslint/" class="sidebar-link">Eslint</a></li><li><a href="/wiki/website/github/" class="sidebar-link">Github</a></li><li><a href="/wiki/website/yeoman/" class="sidebar-link">Yeoman</a></li><li><a href="/wiki/website/node-js-generator/" class="sidebar-link">Node Js Generator</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mac</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="indexdb"><a href="#indexdb" aria-hidden="true" class="header-anchor">#</a> indexDB</h1> <p>Ví dụ đang sử dụng <strong>Vue js</strong></p> <div class="language-js extra-class"><pre class="language-js"><code>data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  db<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  notes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  futureNote<span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Kết nối DB</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> request <span class="token operator">=</span> window<span class="token punctuation">.</span>indexedDB<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>dbName<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Kết nối lần đầu. Tiến hành khởi tạo objectStore với tên collection</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">this</span><span class="token punctuation">.</span>db <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>db<span class="token punctuation">.</span><span class="token function">createObjectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  autoIncrement<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Nếu thành công. Tiến hành lấy notes về</strong></p> <div class="language-js extra-class"><pre class="language-js"><code>request<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>db <span class="token operator">=</span> request<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getNotes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Thêm note mới</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">addNote</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Tạo transaction collection với mode readwrite</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>db
+    <span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span>collection<span class="token punctuation">,</span> <span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      content<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>futureNote<span class="token punctuation">,</span>
+      completed<span class="token punctuation">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>futureNote <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  request<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Lấy lại notes sau khi đã thêm giá trị mới</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getNotes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Chỉnh sửa dữ liệu</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">markComplete</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>db
+    <span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span>collection<span class="token punctuation">,</span> <span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> data <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+    data<span class="token punctuation">.</span>completed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update dữ liệu mới</span>
+    <span class="token keyword">var</span> requestUpdate <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Lấy dữ liệu mới sau khi update</span>
+    requestUpdate<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getNotes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Lặp qua Notes để lấy dữ liệu</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">getNotes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>notes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Sử dụng cursor để lấy lần lượt dữ liệu</span>
+  objectStore<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Nếu có cursor. Push dữ liệu và tiếp tục với record tiếp theo</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>notes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        id<span class="token punctuation">:</span> cursor<span class="token punctuation">.</span>key<span class="token punctuation">,</span>
+        value<span class="token punctuation">:</span> cursor<span class="token punctuation">.</span>value
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Lấy 1 dữ liệu theo key</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">showNote</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Giá trị value trong DB chính là event.target.result</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token string">`Note detail: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">.</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">. Completed: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event
+        <span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">.</span>completed<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Xóa dữ liệu</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">deleteNote</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>db
+    <span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span>collection<span class="token punctuation">,</span> <span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Lấy lại notes sau khi đã xóa note</span>
+  request<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getNotes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/wiki/website/ie11/" class="prev">
+          IE11
+        </a></span> <span class="next"><a href="/wiki/website/vue/">
+          Vue
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a6e02778.js" defer></script><script src="/assets/js/2.e5dfde26.js" defer></script><script src="/assets/js/17.6c17c7fa.js" defer></script>
+  </body>
+</html>
