@@ -133,7 +133,7 @@ const patterns = {
         password: /^[\d\w@-]{8,20}$/i,
         slug: /^[a-z\d-]{8,20}$/,
         email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
-        //             yourname @ domain   .  com          ( .uk )
+        // yourname@domain.com(.uk)
 };
 
 // validation function
