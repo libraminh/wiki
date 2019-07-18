@@ -1,4 +1,4 @@
-# indexDB
+# indexedDB
 
 Ví dụ đang sử dụng __Vue js__
 
