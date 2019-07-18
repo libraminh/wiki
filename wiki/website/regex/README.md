@@ -100,3 +100,56 @@ p|t
 
 (pet|toy) rabbit
 ```
+
+## Example
+
+``` html
+<form>
+  <input type="text" name="username" placeholder="username">
+  <p>Username must be  and contain 5 - 12 characters</p>
+
+  <input type="text" name="email" placeholder="email">
+  <p>Email must be a valid address, e.g. me@mydomain.com</p>
+
+  <input type="password" name="password" placeholder="password">
+  <p>Password must alphanumeric (@, _ and - are also allowed) and be 8 - 20 characters</p>
+
+  <input type="text" name="telephone" placeholder="telephone">
+  <p>Telephone must be a valid UK telephone number (11 digits)</p>
+
+  <input type="text" name="slug" placeholder="profile slug">
+  <p>Slug must contain only lowercase letters, numbers and hyphens and be 8 - 20 characters</p>
+
+</form>
+```
+
+``` js
+const inputs = document.querySelectorAll('input');
+
+// regex patterns
+const patterns = {
+        telephone: /^\d{11}$/,
+        username: /^[a-z\d]{5,12}$/i,
+        password: /^[\d\w@-]{8,20}$/i,
+        slug: /^[a-z\d-]{8,20}$/,
+        email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+        //             yourname @ domain   .  com          ( .uk )
+};
+
+// validation function
+function validate(field, regex){
+  if(regex.test(field.value)){
+      field.className = 'valid';
+  } else {
+      field.className = 'invalid';
+  }
+}
+
+// attach keyup events to inputs
+inputs.forEach((input) => {
+  input.addEventListener('keyup', (e) => {
+    // console.log(patterns[e.target.attributes.name.value]);
+    validate(e.target, patterns[e.target.attributes.name.value]);
+  });
+});
+```
