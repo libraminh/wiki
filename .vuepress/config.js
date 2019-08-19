@@ -28,6 +28,7 @@ module.exports = {
           '/wiki/website/yeoman/',
           '/wiki/website/regex/',
           '/wiki/website/node-js-generator/',
+          '/wiki/website/slick-slider/'
         ]
       },
       {

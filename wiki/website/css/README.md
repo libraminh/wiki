@@ -30,3 +30,22 @@ Use **display flex** for centralized element
 - **Solution:** 
 <br />
 Use `display: block`
+
+## Center element inside 
+
+### Set line height equal to height
+
+``` html
+<a href="#">
+  <i class="icon ion-social-facebook"></i>
+</a>
+```
+
+``` css 
+a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+```
