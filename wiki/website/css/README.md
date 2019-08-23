@@ -52,7 +52,7 @@ a {
 
 ## How to deal with last item when using `justify-content: space-between`
 
-__Use `::after` or `::before` Pseudo-elements to solve this problem__
+__Use `fill-empty` class to solve this problem__
 
 ``` html
 <div class="wrap-box">
@@ -61,6 +61,12 @@ __Use `::after` or `::before` Pseudo-elements to solve this problem__
   <div class="box"></div>
   <div class="box"></div>
   <div class="box"></div>
+
+  <!-- 4 `fill-empty` boxs = (6 - 2) -->
+  <div class="fill-empty"></div>
+  <div class="fill-empty"></div>
+  <div class="fill-empty"></div>
+  <div class="fill-empty"></div>
 </div>
 ```
 
@@ -71,19 +77,17 @@ __Use `::after` or `::before` Pseudo-elements to solve this problem__
   flex-wrap: wrap;
 }
 
-.wrap-box:after {
-  content: "";
-  display: block;
-  width: calc(100% / 3 - 10px);
-  height: 0;
-}
-
 .box {
   background: pink;
-  width: calc(100% / 3 - 10px);
+  width: calc(100% / 6 - 10px);
   height: 300px;
   margin-bottom: 15px;
 }
+
+.fill-empty {
+  width: calc(100% / 6 - 10px);
+  height: 0;
+}
 ```
 
-Demo: [https://codesandbox.io/s/static-obzoz](https://codesandbox.io/s/static-obzoz)
+Demo: [https://codesandbox.io/s/css-flexbox-trick-justify-content-space-between-obzoz](https://codesandbox.io/s/css-flexbox-trick-justify-content-space-between-obzoz)
