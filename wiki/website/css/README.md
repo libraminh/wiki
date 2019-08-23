@@ -52,7 +52,7 @@ a {
 
 ## How to deal with last item when using `justify-content: space-between`
 
-__Use `.filling-empty-space-childs` to solve this problem__
+__Use `::after` or `::before` Pseudo-elements to solve this problem__
 
 ``` html
 <div class="wrap-box">
@@ -61,10 +61,6 @@ __Use `.filling-empty-space-childs` to solve this problem__
   <div class="box"></div>
   <div class="box"></div>
   <div class="box"></div>
-
-  <div class="filling-empty-space-childs"></div>
-  <div class="filling-empty-space-childs"></div>
-  <div class="filling-empty-space-childs"></div>
 </div>
 ```
 
@@ -75,17 +71,19 @@ __Use `.filling-empty-space-childs` to solve this problem__
   flex-wrap: wrap;
 }
 
+.wrap-box:after {
+  content: "";
+  display: block;
+  width: calc(100% / 3 - 10px);
+  height: 0;
+}
+
 .box {
   background: pink;
   width: calc(100% / 3 - 10px);
   height: 300px;
   margin-bottom: 15px;
 }
-
-.filling-empty-space-childs {
-  width: calc(100% / 3 - 10px); /*the width of the images in this example*/
-  height:0; /*Important! for the divs to collapse should they fall in a new row*/
-}
 ```
 
-Demo: [https://codesandbox.io/s/static-oksuf](https://codesandbox.io/s/static-oksuf)
+Demo: [https://codesandbox.io/s/static-obzoz](https://codesandbox.io/s/static-obzoz)
