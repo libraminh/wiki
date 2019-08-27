@@ -9,7 +9,8 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Wiki', link: '/wiki/' },
-      { text: 'EDMs', link: '/edms/' }
+      { text: 'EDMs', link: '/edms/' },
+      { text: 'Documentation', link: '/documentation/javascript/' }
     ],
     sidebar: [
       {
@@ -35,6 +36,12 @@ module.exports = {
         title: "Mac",
         children: [
           '/wiki/mac/valet-laravel/',
+        ]
+      },
+      {
+        title: "Documentation",
+        children: [
+          '/documentation/javascript/'
         ]
       }
     ]
