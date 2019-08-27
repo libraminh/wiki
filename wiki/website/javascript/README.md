@@ -192,12 +192,15 @@ $(window).scroll(function () {
 ## Auto resize height
 
 ``` js
-function autoResizeHeight(elm, width, height, heightDefault = null, condition = null) {
+function autoResizeHeight(elm, width, height, heightDefault, condition) {
+  heightDefault = typeof heightDefault !== 'undefined' ? heightDefault : null;
+  condition = typeof condition !== 'undefined' ? condition : null;
+
   var screenWidth = $(window).width();
   var currentElmWidth = $(elm).width();
   var ratio = height / width;
   var currentElmHeight = currentElmWidth * ratio;
-  
+
   if (heightDefault !== null && condition !== null) {
     if (condition) {
       $(elm).css({
@@ -219,4 +222,24 @@ function autoResizeHeight(elm, width, height, heightDefault = null, condition = 
 var condition = $(window).width() < 768;
 
 autoResizeHeight('.feature-image', 720, 400, 400, condition);
+```
+
+## Set default value for function parameter
+
+__ES5 method__
+
+``` js
+function foo(a, b) {
+  a = typeof a !== 'undefined' ? a : 42;
+  b = typeof b !== 'undefined' ? b : 'default_b';
+  ...
+}
+```
+
+__ES6 Method__
+
+``` js
+function foo(a = 42, b = 'default_b') {
+  ...
+}
 ```
