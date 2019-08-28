@@ -21,6 +21,12 @@ Create `CNAME` file at root directory with url of github pages
 libraminh.github.io
 ```
 
+Or if you're using custom domain
+
+```
+wiki.minhle.dev
+```
+
 **Github pages**
 
 - Choose `Source` from any branch (`master branch /docs folder` for vuepress)
