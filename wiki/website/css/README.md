@@ -20,6 +20,14 @@
 appearance: none;
 ```
 
+__On IE__
+
+``` css
+select::-ms-expand {
+  display: none;
+}
+```
+
 ## Raising keyboard up when enter input field (mobile)
 - **Causes:**
 <br />
@@ -91,3 +99,25 @@ __Use `fill-empty` class to solve this problem__
 ```
 
 Demo: [https://codesandbox.io/s/css-flexbox-trick-justify-content-space-between-obzoz](https://codesandbox.io/s/css-flexbox-trick-justify-content-space-between-obzoz)
+
+
+## Placeholder css
+
+``` css
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+  opacity: 1; /* prefix for firefox */
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+  opacity: 1; /* prefix for firefox */
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+  opacity: 1; /* prefix for firefox */
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+  opacity: 1; /* prefix for firefox */
+}
+```
