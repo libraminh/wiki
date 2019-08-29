@@ -15,7 +15,7 @@ Go to github repo setting, at Github Pages choose `master branch / docs folder`
 
 ### Set google subdomain with github pages
 
-Create `CNAME` file at root directory with url of github pages
+Create `CNAME` file at `docs` directory with url of github pages
 
 ```
 libraminh.github.io
