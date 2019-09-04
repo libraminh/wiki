@@ -33,16 +33,11 @@ module.exports = {
         ]
       },
       {
-        title: "Mac",
-        children: [
-          '/wiki/mac/valet-laravel/',
-          '/wiki/mac/custom-keyboard/'
-        ]
-      },
-      {
         title: "Documentation",
         children: [
-          '/documentation/javascript/'
+          '/documentation/javascript/',
+          '/documentation/mac/',
+          '/documentation/windows/'
         ]
       }
     ]
