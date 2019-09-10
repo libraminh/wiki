@@ -16,6 +16,7 @@ module.exports = {
       {
         title: "Website",
         children: [
+          '/wiki/website/animation/',
           '/wiki/website/git/',
           '/wiki/website/css/',
           '/wiki/website/javascript/',
