@@ -19,6 +19,7 @@ module.exports = {
           '/wiki/website/animation/',
           '/wiki/website/git/',
           '/wiki/website/css/',
+          '/wiki/website/hubspot/',
           '/wiki/website/javascript/',
           '/wiki/website/ie11/',
           '/wiki/website/indexedDB/',
