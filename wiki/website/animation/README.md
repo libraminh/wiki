@@ -39,3 +39,6 @@ $('.wow').on('scrollSpy:exit', function() {
 __Using `jquery.parallax-scroll`__
 
 [Reference](https://github.com/alumbo/jquery.parallax-scroll)
+
+<a href="/demo/animation/index.html">Demo</a>
+
