@@ -40,5 +40,5 @@ __Using `jquery.parallax-scroll`__
 
 [Reference](https://github.com/alumbo/jquery.parallax-scroll)
 
-<a href="/demo/animation/index.html">Demo</a>
+<a href="/demo/animation/index.html" target="_blank">Demo</a>
 
