@@ -31,3 +31,11 @@ $('.wow').on('scrollSpy:exit', function() {
 ```
 
 [__Demo__](https://jsfiddle.net/ugurerkan/53641ovn/)
+
+## Animate elements when scrolling
+
+### Simple Animation
+
+__Using `jquery.parallax-scroll`__
+
+[Reference](https://github.com/alumbo/jquery.parallax-scroll)

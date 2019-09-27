@@ -326,3 +326,27 @@ function _throttle(func, wait, options) {
 ## Sticky Sidebar
 
 [Sticky Sidebar](https://abouolia.github.io/sticky-sidebar/)
+
+Example:
+
+``` html
+<div id="main-content" class="main">
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar__inner">
+      <!-- Content goes here -->
+    </div>
+  </div>
+  <div id="content" class="content">
+    <!-- Content goes here -->
+  </div>
+</div>
+```
+
+``` js
+var sidebar = new StickySidebar('#sidebar', {
+  containerSelector: '#main-content',
+  innerWrapperSelector: '.sidebar__inner',
+  topSpacing: 20,
+  bottomSpacing: 20
+});
+```
