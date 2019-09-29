@@ -6,6 +6,7 @@ module.exports = {
   base: '/',
   dest: 'docs',
   themeConfig: {
+    smoothScroll: true,
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Wiki', link: '/wiki/' },
@@ -17,6 +18,7 @@ module.exports = {
         title: "Website",
         children: [
           '/wiki/website/animation/',
+          '/wiki/website/algorithm/',
           '/wiki/website/git/',
           '/wiki/website/css/',
           '/wiki/website/hubspot/',
