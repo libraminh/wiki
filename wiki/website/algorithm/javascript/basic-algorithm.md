@@ -49,11 +49,10 @@ Tìm độ dài của từ dài nhất trong câu
 
 ``` js
 function findLongestWord(str) {
-  var words = str.split(" ");
-  var maxLength = words.reduce(function(acc, cur){
-    return cur.length > acc ? cur.length : acc;
-  }, 0);
-  return maxLength;
+  var longestStr = str.split(' ').reduce((previousWord, currentWord) => {
+    return currentWord.length > previousWord.length ? currentWord : previousWord;
+  }, '')
+  return longestStr; // longestStr.length for return number of length
 }
 
 findLongestWord("The quick brown fox jumped over the lazy dog");
