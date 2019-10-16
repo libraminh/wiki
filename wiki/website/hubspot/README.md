@@ -41,3 +41,61 @@
   </div>
 </div>
 ```
+
+## Create Custom Blog Post Social Sharing
+
+[Reference](https://knowledge.hubspot.com/articles/kcs_article/cos-blog/how-do-i-add-custom-social-icons-to-a-hubspot-page)
+
+- Clone a new module from `Social Sharing` module
+- Code example:
+
+``` html
+{% set size = "24px" %}
+{% set borderRadius = "3px" %}
+{% set linkStyle = "width:"~size~";border-width:0px;border:0px;text-decoration:none;" %}
+{% set imgStyle = "height:"~size~";width:"~size~";border-radius:"~borderRadius~";border-width:0px;border:0px;" %}
+
+{% macro render_social_icon(networkName) %}
+{% set network = module[networkName] %}
+{% if (networkName == "pinterest" and network.pinterest_media and network.enabled) or (networkName != "pinterest" and network.enabled) %}
+{% if networkName == "pinterest" %}
+{% set pinterest_media = module.pinterest.pinterest_media.src %}
+{% endif %}
+
+{% if networkName == "facebook" %}
+{% set socialClass = 'fb-icon' %}
+{% endif %}
+{% if networkName == "twitter" %}
+{% set socialClass = 'tw-icon' %}
+{% endif %}
+{% if networkName == "linkedin" %}
+{% set socialClass = 'ld-icon' %}
+{% endif %}
+
+{% set logo = networkName ~'-color.png' %}
+{% set urlOperator = "&" if "?" in page_meta.canonical_url else "&" %}
+{% if module.link %}
+{% set social_link_url = module.link ~ urlOperator ~ "utm_medium=social&utm_source="|safe ~ networkName %}					
+{% elif content.email_type.blogRssChild %}
+{% set social_link_url = content.rss_email_url %}
+{% else %}
+{% set social_link_url = page_meta.canonical_url ~ urlOperator ~ "utm_medium=social&utm_source="|safe ~ networkName %}
+{% endif %}
+
+<a class="{{ socialClass }}" target="_blank" href="{{ network.custom_link_format }}"><i class="fa fa-{{ networkName }}" aria-hidden="true"></i></a>
+{% endif %}
+{% endmacro %}
+
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_social_sharing blog-social-sharing-wrapper" data-hs-cos-general-type="widget" data-hs-cos-type="social_sharing">
+  {{ render_social_icon('facebook') }}
+  {{ render_social_icon('twitter') }}
+  {{ render_social_icon('linkedin') }}
+  {{ render_social_icon('pinterest') }}
+  {{ render_social_icon('email') }}
+</div>
+```
+
+## Use custom module in `blog detail/ blog listing` template
+
+- Right click on any custom module that you made, choose `Copy snippet`
+- Paste to `blog template`
