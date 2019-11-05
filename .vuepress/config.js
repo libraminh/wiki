@@ -24,7 +24,6 @@ module.exports = {
           '/wiki/website/hubspot/',
           '/wiki/website/javascript/',
           '/wiki/website/ie11/',
-          '/wiki/website/indexedDB/',
           '/wiki/website/vue/',
           '/wiki/website/vuepress/',
           '/wiki/website/webpack/',
@@ -41,7 +40,8 @@ module.exports = {
         children: [
           '/documentation/javascript/',
           '/documentation/mac/',
-          '/documentation/windows/'
+          '/documentation/windows/',
+          '/documentation/plugins/',
         ]
       }
     ]
