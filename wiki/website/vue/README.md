@@ -64,3 +64,18 @@ app.listen(port, () => {
   <text id="BE" class="cls-3" x="159.986" y="134.015">BE</text>
 </svg>
 ```
+
+## Check is has slot
+
+``` js
+export default {
+  computed: {
+    hasDefaultSlot () {
+      return !!this.$slots.default
+    },
+    hasFooterSlot () {
+      return !!this.$slots['footer']
+    }
+  }
+}
+```
