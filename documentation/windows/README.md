@@ -37,4 +37,6 @@ return
 
 [sharpkeys](https://github.com/randyrants/sharpkeys/releases)
 
+https://drive.google.com/drive/folders/1RKaLl8XHKLauQEz3Cy5w9wfOEDTqKZmj
+
 [remap-windows-keyboard-shortcuts](https://www.howtogeek.com/197365/how-to-remap-windows-keyboard-shortcuts-in-boot-camp-on-a-mac/)
